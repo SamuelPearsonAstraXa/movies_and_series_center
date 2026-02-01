@@ -1,0 +1,77 @@
+main{
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80dvh;
+}
+
+section.wrapper-1{
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    min-width: 80%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+header{
+    width: fit-content;
+    margin: auto;
+    position: relative;
+    /* border-right: 1px solid rgba(0, 0, 0, 0.2); */
+}
+
+header img{
+    border-radius: 50%;
+    width: 20rem;
+    height: 20rem;
+    vertical-align: middle;
+}
+
+header .user-details{
+    display: inline-block;
+    margin-left: 2rem;
+    vertical-align: middle;
+}
+
+header .user-details p{
+    padding: 1rem;
+}
+
+.web-models{
+    padding-left: 2rem;
+    border-left: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.web-models h2{
+    font-size: 2rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+.web-models .inner-div{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 1rem;
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    justify-items: center;
+}
+
+.web-models .inner-div .model-object-count{
+    text-align: center;
+}
+
+.web-models .inner-div a{
+    text-align: right;
+    cursor: default;
+}
+
+section.wrapper-2{
+    margin-top: 1rem;
+    background-color: white;
+    min-height: 10rem;
+    width: 100%;
+    border-radius: 1rem;
+}

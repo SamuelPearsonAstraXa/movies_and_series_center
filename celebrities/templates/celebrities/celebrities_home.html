@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'celebrities/css/celebrities_home.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block middle_navbar_links %}
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+                <div class="celeb-links">
+                    <a href="{% url 'celebrities:add' %}"><i class="fas fa-user-plus"></i> Add a celebrity</a>
+                    <a href="{% url 'celebrities:create-news' %}"><i class="fas fa-add"></i> Create a celebrity news</a>
+                </div>
+        {% endif %}
+    {% endif %}
+{% endblock middle_navbar_links %}
+
+{% block content %}
+<main>
+    <div class="wrapper">
+        <h1>celebrity Home</h1>
+        {% for news in celebrity_news %}
+            <p>{{ news.title }}</p>
+        {% endfor %}
+    </div>
+</main>
+{% endblock content %}

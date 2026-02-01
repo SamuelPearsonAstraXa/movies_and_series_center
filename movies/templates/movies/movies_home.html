@@ -1,0 +1,63 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'movies/css/movies_home.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block middle_navbar_links %}
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+                <a href="{% url 'movies:upload' %}"><i class="fas fa-cloud-upload"></i> Upload a movie</a>
+        {% endif %}
+    {% endif %}
+{% endblock middle_navbar_links %}
+
+{% block content %}
+<main>
+    <div class="wrapper">
+        <header>
+            <h1>All movies</h1>
+            <div class="movies-filter" style="display: none;">
+                <form action="" method="get">
+                    {{ filter.form.as_div }}
+                    <button type="submit">Filter</button>
+                </form>
+            </div>
+        </header>
+        <section class="movies-list">
+            {% for movie in movies %}
+                <a href="{% url 'movies:movie-details' movie.slug %}" class="movie-card">
+                    <div class="banner-img">
+                        <img src="{{ movie.banner_img.url }}" alt="{{ movie.title }}">
+                    </div>
+                    <div class="movie-info">
+                        <h2>{{ movie.title }}</h2>
+                        <p>{{ movie.production_year }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </section>
+
+        <div class="pagenation">
+            <div>
+                {% if page_obj.has_previous %}
+                    <a href="?{{ query_params }}&page={{ page_obj.previous_page_number }}"><i class="fas fa-arrow-left"></i> Previous</a>
+                {% endif %}
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                {% if page_obj.has_next %}
+                    <a href="?{{ query_params }}page={{ page_obj.next_page_number }}">Next <i class="fas fa-arrow-right"></i></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

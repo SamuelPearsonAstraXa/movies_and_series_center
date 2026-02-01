@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock title %} | Movies and Series Center
+    </title>
+
+    {% load static %}
+
+    {% block styles %}
+    {% endblock styles %}
+    <link rel="stylesheet" href="{% static 'css/navbars.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontawesome/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/layout.js' %}" defer></script>
+    <script src="{% static 'js/navbar.js' %}" defer></script>
+
+    <script>
+        $(document).ready(e=>{
+            // $('#main-navbar').d
+        })
+    </script>
+    {% block scripts %}
+    {% endblock scripts %}
+</head>
+<body>
+
+    <!-- Main navigation bar -->
+    <nav id="main-navbar">
+        <div class="left-links">
+            <button class="aside-navbar-toggler"><i class="fas fa-bars"></i></button>
+            <a href="{% url 'core:home' %}" class="logo">MSC</a>
+        </div>
+        <div class="middle-links">
+            {% block middle_navbar_links %}
+            {% endblock middle_navbar_links %}
+        </div>
+        <div id="search-div">
+            <div class="search-wrapper">
+                <button id="close-search-div-btn" class="close-search-btn"><i class="fas fa-close"></i></button>
+                <form action="" method="get">
+                    <input type="search" name="search_query" id="search_query" placeholder="Search for something">
+                    <button type="button"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="logout-form" id="logout-form-div">
+            <form action="{% url 'logout' %}" id="logout-form" method="post">
+                {% csrf_token %}
+                <p>Are you sure you wanna logout?</p>
+                <button class="log-btns " id="logout-btn" type="submit">Yes &nbsp; <i class="fas fa-sign-out"></i></button>
+                <button class="log-btns cancle-logout-btn">Cancle</button>
+            </form>
+        </div>
+        <div class="right-links">
+            <button id="open-search-div-btn"><i class="fas fa-search"></i></button>
+            <button><i class="fas fa-moon"></i></button>
+            {% if request.user.is_authenticated %}
+                <form action="" method="post" style="display: inline-block;">
+                    <button id="logout-toggler" type="button">Logout</button>&nbsp;
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="login-link">Login &nbsp; <i class="fas fa-sign-in"></i></a>
+            {% endif %}
+        </div>
+        <aside class="aside-navbar">
+            <div class="links">
+                <a href="{% url 'core:home' %}" class="home-link">Home  <i class="fas home-icon fa-home"></i></a>
+                <a class="movies-link">Movies  <i class="fas movies-link-icon fa-angle-down"></i></a>
+                <div class="movies-sub-menu sub-menu">
+                    <a href="{% url 'movies:home' %}" class="movies sub-links">All</a>
+                    <a href="{% url 'movies:latest' %}" class="movies sub-links">Latest</a>
+                    <a href="{% url 'movies:upcoming' %}" class="movies sub-links">Upcoming</a>
+                    <a href="" class="movies sub-links">Box Office</a>
+                    <a href="" class="movies sub-links">Review</a>
+                </div>
+
+                <a class="series-link">Series <i class="fas series-link-icon fa-angle-down"></i></a>
+                <div class="series-sub-menu sub-menu">
+                    <a href="{% url 'series:home' %}" class="series sub-links">All</a>
+                    <a href="{% url 'series:latest' %}" class="series sub-links">Latest</a>
+                    <a href="{% url 'series:upcoming' %}" class="series sub-links">Upcoming</a>
+                    <a href="" class="series sub-links">Renewal and cancellation</a>
+                    <a href="" class="series sub-links">Review</a>
+                </div>
+
+                <a class="actors-link">Actors and Celebrities  <i class="fas actors-link-icon fa-angle-down"></i></a>
+                <div class="actors-sub-menu sub-menu">
+                    <a href="" class="actors sub-links">Casting News</a>
+                    <a href="" class="actors sub-links">Birthdays</a>
+                    <a href="{% url 'celebrities:home' %}" class="actors sub-links">Celebrities Updates</a>
+                    <a href="" class="actors sub-links">Rumors and Leaks</a>
+                </div>
+
+                <a class="facts-link">Did you know?  <i class="fas facts-link-icon fa-angle-down"></i></a>
+                <div class="facts-sub-menu sub-menu">
+                    <a href="" class="facts sub-links">Actors Facts</a>
+                    <a href="" class="facts sub-links">Behind the scenes</a>
+                    <a href="" class="facts sub-links">Characters</a>
+                    <a href="" class="facts sub-links">Movie Trivia</a>
+                </div>
+
+                <a class="affiliate-link">Affiliate picks  <i class="fas affiliate-link-icon fa-angle-down"></i></a>
+                <div class="affiliates-sub-menu sub-menu">
+                    <a href="" class="affiliate sub-links">Streaming Sucbscription</a>
+                    <a href="" class="affiliate sub-links">Home entertainment gear</a>
+                    <a href="" class="affiliate sub-links">Movie collectibles and posters</a>
+                </div>
+                <a href="">Store</a>
+                <a href="/admin/">Admin</a>
+
+                {% if request.user.is_authenticated %}
+                <br>
+                <hr>
+                <br>
+                    <a class="profile-link">
+                        <img src="{{ request.user.profile_img.url }}" alt="">
+                        {{ request.user.username }} <i class="fas profile-link-icon fa-angle-down"></i>
+                    </a>
+                    <div class="profile-sub-menu sub-menu">
+                        <a href="{% url 'accounts:user-profile' request.user.slug %}" class="profile sub-links">View Profile <i class="fas fa-eye"></i></a>
+                        <a href="" class="profile sub-links">Edit Profile <i class="fas fa-gears"></i></a>
+                    </div>
+                {% endif %}
+
+
+                <a href="">Advertise with us</a>
+            </div>
+        </aside>
+    </nav>
+
+    <!-- Main web content -->
+    <section id="main-wrapper">
+        <section class="page-content">
+            {% block content %}
+    
+            {% endblock content %}
+        </section>
+    </section>
+
+    <!-- Footer section -->
+    <footer>
+        <div class="social-links">
+            <a href=""><i class="fab fa-facebook"></i></a>
+            <a href=""><i class="fab fa-instagram"></i></a>
+            <a href=""><i class="fab fa-twitter"></i></a>
+            <a href=""><i class="fab fa-telegram"></i></a>
+            <a href=""><i class="fab fa-whatsapp"></i></a>
+            <a href=""><i class="fab fa-snapchat"></i></a>
+            <a href=""><i class="fab fa-tiktok"></i></a>
+            <a href=""><i class="fab fa-linkedin"></i></a>
+            <a href=""><i class="fab fa-pinterest"></i></a>
+        </div>
+        <fieldset>
+            <div class="useful-links">
+                <a href="">Movies</a>
+                <a href="">Series</a>
+                <a href="">Actors</a>
+                <a href="">Did you know?</a>
+                <a href="">Affiliate Picks</a>
+                <a href="">Advertise with us</a>
+            </div>
+            <div class="contact-details">
+                <a href=""><i class="fas fa-exclamation"></i> About us</a>
+                <a href=""><i class="fas fa-envelope"></i> msc@gmail.com</a>
+                <a href=""><i class="fas fa-phone"></i> +265 999 12 34 56</a>
+                <a href=""><i class="fas fa-warning"></i> Report something</a>
+            </div>
+        </fieldset>
+    </footer>
+</body>
+</html>

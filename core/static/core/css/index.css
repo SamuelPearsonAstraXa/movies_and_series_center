@@ -1,0 +1,200 @@
+.top-section-wrapper{
+    height: 50rem;
+    background-color: rgba(0, 00, 0, 0.8);
+    margin-top: 0;
+    position: relative;
+}
+
+.top-section-wrapper video.banner-video{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: -2;
+}
+
+.top-section-wrapper h1{
+    text-align: center;
+    font-size: 8rem;
+    color: white;
+}
+
+.top-section-wrapper .tagline{
+    text-align: center;
+    font-size: 3rem;
+    color: white;
+}
+
+.top-section-wrapper .hero-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.top-stories{
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    padding: 2rem;
+    margin-top: 2rem;
+}
+
+.top-stories h2{
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.top-stories .story-container{
+    overflow: hidden;
+    position: relative;
+    height: 40rem;
+}
+
+.top-stories .story-container video{
+    position: absolute;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+}
+
+.top-stories .story-container .wrapper{
+    margin-bottom: 2rem;
+    overflow: hidden;
+    border-radius: 1rem;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.top-stories .story-container .story-data{
+    color: white;
+    font-size: 2rem;
+    padding: 5rem;
+    text-align: center;
+}
+
+.top-stories .story-container .story-data h3{
+    font-size: 4rem;
+    margin-bottom: 2rem;
+}
+
+.top-stories .story-container .story-data p{
+    letter-spacing: 1px;
+}
+
+.top-stories .story-container .story-data a{
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    display: block;
+}
+
+/* Did you knoe section */
+.did-you-know{
+    background-color: white;
+    padding: 3rem;
+    margin-top: 5rem;
+    text-align: center;
+}
+
+.did-you-know h2{
+    font-size: 5rem;
+}
+
+.did-you-know q{
+    font-size: 3rem;
+    display: block;
+    margin: 2rem auto;
+}
+
+/* Latest movies */
+.latest-movies, .upcoming-movies,
+.latest-series, .upcoming-series{
+    padding: 2rem;
+}
+
+.latest-movies .wrapper,
+.upcoming-movies .wrapper,
+.latest-series .wrapper,
+.upcoming-series .wrapper{
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 2rem;
+    border-radius: 1rem;
+    position: relative;
+}
+
+.latest-movies .wrapper{
+    background-color: rgba(135, 207, 235, 0.1);
+}
+
+.upcoming-movies .wrapper{
+    background-color: rgba(135, 207, 235, 0.2);
+}
+
+.latest-series .wrapper{
+    background-color: rgba(135, 207, 235, 0.3);
+}
+.upcoming-series .wrapper{
+    background-color: rgba(135, 207, 235, 0.4);
+}
+
+.latest-movies .wrapper h2,
+.upcoming-movies .wrapper h2,
+.latest-series .wrapper h2,
+.upcoming-series .wrapper h2{
+    font-size: 3rem;
+    width: fit-content;
+    border-bottom: 1px solid;
+    margin-bottom: 2rem;
+}
+
+.latest-movies-list, .upcoming-movies-list,
+.latest-series-list, .upcoming-series-list{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 2rem;
+}
+
+.latest-movies-list .movie-card,
+.upcoming-movies-list .movie-card ,
+.latest-series-list .series-obj-card,
+.upcoming-series-list .series-obj-card {
+    padding: 1rem;
+    background-color: white;
+    border-radius: 1rem;
+    color: var(--dark-gray);
+}
+
+.latest-movies-list .movie-card h3,
+.upcoming-movies-list .movie-card h3 ,
+.latest-series-list .series-obj-card h3,
+.upcoming-series-list .series-obj-card h3 {
+    font-size: 2rem;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.latest-movies-list .movie-card img,
+.upcoming-movies-list .movie-card img,
+.latest-series-list .series-obj-card img,
+.upcoming-series-list .series-obj-card img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.latest-movies .see-more-link,
+.upcoming-movies .see-more-link,
+.latest-series .see-more-link,
+.upcoming-series .see-more-link{
+    padding: 1rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background-color: skyblue;
+    color: white;
+    border-radius: 5px;
+    letter-spacing: 1px;
+}

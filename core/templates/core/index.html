@@ -1,0 +1,159 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'core/css/index.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main>
+
+    {% comment %}
+        <video src="{{ banner_video.video.url }}" autoplay muted loop></video>
+        <p>{{ banner_video.id }}</p>
+        <section class="wrapper">
+            <section class="first">
+                <h1>
+                    Movies and series center
+                </h1>
+                <div id="cta-links">
+                    <a href=""><i class="fa fa-flag" aria-hidden="true"></i> Explore Movies</a>
+                    <a href=""><i class="fa fa-dashboard" aria-hidden="true"></i> Subscribe</a>
+                </div>
+            </section>
+        </section>
+    {% endcomment %}
+
+    <section class="top-section-wrapper">
+        <video src="{{ banner_video.video.url }}" class="banner-video" loop muted autoplay></video>
+        <section class="hero-section">
+            <div>
+                <h1>Movies & Series Center</h1>
+                <p class="tagline">{{ tagline }}</p>
+            </div>
+        </section>
+    </section>
+
+    <!-- Did you know section -->
+    <section class="did-you-know">
+        <h2>Did you know?</h2>
+        <div class="fact-container">
+            <q>{{ did_you_know.text }}</q>
+            <a href="">Explore more facts</a>
+        </div>
+    </section>
+
+    <!-- Top stories section -->
+    <section class="top-stories">
+        <h2>Our top story</h2>
+        <div class="story-container">
+            <video src="{% static 'videos/satellite.mp4' %}" loop muted autoplay></video>
+            <div class="wrapper">
+                <div class="story-data">
+                    <div class="story-text">
+                        <h3>{{ top_story.title }}</h3>
+                        <p>{% lorem %}</p>
+                        <a href="">Read full story <i class="fas fa-external-link"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest movies -->
+    <section class="latest-movies">
+        <div class="wrapper">
+            <h2>Latest Movies</h2>
+            <div class="latest-movies-list">
+                {% for movie in latest_movies %}
+                    <a href="{% url 'movies:movie-details' movie.slug %}" class="movie-card">
+                        <div class="banner-img">
+                            <img src="{{ movie.banner_img.url }}" alt="{{ movie.title }}">
+                        </div>
+                        <div class="movie-info">
+                            <h3>{{ movie.title }}</h3>
+                            <p>({{ movie.production_year }})</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <a href="{% url 'movies:latest' %}" class="see-more-link">See more</a>
+        </div>
+    </section>
+
+    <!-- upcoming movies -->
+    {% if upcoming_movies.count > 0 %}
+        <section class="upcoming-movies">
+            <div class="wrapper">
+                <h2>Upcoming Movies</h2>
+                <div class="upcoming-movies-list">
+                    {% for movie in upcoming_movies %}
+                        <a href="{% url 'movies:movie-details' movie.slug %}" class="movie-card">
+                            <div class="banner-img">
+                                <img src="{{ movie.banner_img.url }}" alt="{{ movie.title }}">
+                            </div>
+                            <div class="movie-info">
+                                <h3>{{ movie.title }}</h3>
+                                <p>({{ movie.production_year }})</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'movies:upcoming' %}" class="see-more-link">See more</a>
+            </div>
+        </section>
+    {% endif %}
+
+    <!-- Latest series -->
+    <section class="latest-series">
+        <div class="wrapper">
+            <h2>Latest series</h2>
+            <div class="latest-series-list">
+                {% for series_obj in latest_series %}
+                    <a href="{% url 'series:details' series_obj.slug %}" class="series-obj-card">
+                        <div class="banner-img">
+                            <img src="{{ series_obj.banner_img.url }}" alt="{{ series_obj.title }}">
+                        </div>
+                        <div class="series-obj-info">
+                            <h3>{{ series_obj.title }}</h3>
+                            <p>({{ series_obj.production_year }})</p>
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <a href="{% url 'series:latest' %}" class="see-more-link">See more</a>
+        </div>
+    </section>
+
+    <!-- upcoming series -->
+    {% if upcoming_series.count > 0 %}
+        <section class="upcoming-series">
+            <div class="wrapper">
+                <h2>Upcoming series</h2>
+                <div class="upcoming-series-list">
+                    {% for series_obj in upcoming_series %}
+                        <a href="{% url 'series:details' series_obj.slug %}" class="series-obj-card">
+                            <div class="banner-img">
+                                <img src="{{ series_obj.banner_img.url }}" alt="{{ series_obj.title }}">
+                            </div>
+                            <div class="series-obj-info">
+                                <h3>{{ series_obj.title }}</h3>
+                                <p>({{ series_obj.production_year }})</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+                <a href="{% url 'series:upcoming' %}" class="see-more-link">See more</a>
+            </div>
+        </section>
+    {% endif %}
+</main>
+{% endblock content %}

@@ -1,0 +1,102 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'movies/css/movie_details.css' %}">
+<link rel="stylesheet" href="{% static 'css/video-player.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'js/video-player.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block middle_navbar_links %}
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+                <a href="{% url 'movies:update-movie' movie.slug %}"><i class="fas fa-cloud-upload"></i> Update</a>
+        {% endif %}
+    {% endif %}
+{% endblock middle_navbar_links %}
+
+{% block content %}
+<main>
+    <div class="group-1">
+        <img src="{{ movie.banner_img.url }}" alt="{{ movie.title }}" class="page-banner">
+        <div class="wrapper">
+            <div class="container">
+                <header>
+                    <img src="{{ movie.banner_img.url }}" alt="{{ movie.title }}">
+                    <div class="movie-details">
+                        <h1>{{ movie.title }} ({{ movie.production_year }})</h1>
+                        <div class="description">
+                            <p>{{ movie.description }}</p>
+                        </div>
+                        <div>
+                            <p><strong>Release date:</strong> {{ movie.release_date }}</p>
+                            <p><strong>Producer:</strong> {{ movie.producer }}</p>
+                            <p><strong>Director:</strong> {{ movie.director }}</p>
+                            <p><strong>Production country:</strong> {{ movie.production_country }}</p>
+                            <p><strong>Duration:</strong> {{ movie.duration }}</p>
+                        </div>
+                    </div>
+                </header>
+                
+            </div>
+        </div>
+        <section class="trailer">
+            <div class="video-player-wrapper">
+                <div class="video-container">
+                    <div class="video-file">
+                        <video src="{{ movie.trailer.url }}"  preload="metadata"></video>
+                    </div>
+                    <div class="video-controls">
+                        <div class="timer">
+                            <input type="range" value="0" id="timer" min="0" step="0.1">
+                        </div>
+                        <div class="btns">
+                            <button class="primary play-video-btn"><i class="fas fa-play"></i></button>
+                            <div class="center">
+                                <p>
+                                    <span class="elapsed-time">00:00</span> /
+                                    <span class="full-time">00:00</span>
+                                </p>
+                                <div class="volume-div">
+                                    <button class="volume-btn"><i class="fas volume-icon fa-volume-high"></i></button>
+                                    <input type="range" name="volume-input" id="volume-input" value="0.1" step="0.05" min="0" max="1">
+                                </div>
+                            </div>
+                            <button class="primary expand-video-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="group-2">
+        <section class="related-movies">
+            <h2>Related movies</h2>
+                <div class="related-movies-list">
+                    {% for related_movie in related_movies %}
+                        {% if related_movie.id != movie.id %}
+                            <div class="related-movie-card">
+                                <img src="{{ related_movie.banner_img.url }}" alt="{{ related_movie.title }}">
+                                <div class="related-movie-details">
+                                    <h3>{{ related_movie.title }}</h3>
+                                    <p>({{ related_movie.production_year }})</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% empty %}
+                        <p class="no-related-movie">No related movie</p>
+                    {% endfor %}
+                </div>
+        </section>
+    </div>
+</main>
+{% endblock content %}

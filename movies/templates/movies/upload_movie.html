@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'movies/css/upload_movie.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'movies/js/upload_movie.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <div class="wrapper">
+        <h1>Upload a movie</h1>
+        <form action="" enctype="multipart/form-data" id="upload-movie-form" novalidate method="post">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <div id="response_msg"></div>
+            <div class="loader" style="margin: auto; margin-bottom: 2rem;"></div>
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+</main>
+{% endblock content %}

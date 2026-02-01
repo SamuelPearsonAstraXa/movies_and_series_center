@@ -1,0 +1,76 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'accounts/js/login.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+    <main>
+        <video src="{% static 'videos/auth-video.mp4' %}"></video>
+        <div class="wrapper">
+            <h1>MSC Login</h1>
+            <section class="form-container">
+                <div class="login-form" id="login-form">
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+                        <div>
+                            <!-- <label for="id_username">{{ form.username.label }}</label> -->
+                            <i class="fas input-icon username-icon fa-envelope"></i>{{ form.username }}
+                            {% if form.username.errors %}
+                                <div  class="error">
+                                    {% for error in form.username.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <!-- <label for="id_password">{{ form.password.label}}</label> -->
+                            <i class="fas input-icon password-icon fa-lock"></i>{{ form.password}}
+                            <button type="button" title="Show password" id="show-password"><i class="fas fa-eye"></i></button>
+                            {% if form.non_field_errors %}
+                                <div  class="error">
+                                    {% for error in form.non_field_errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% if form.password.errors %}
+                                <div  class="error">
+                                    {% for error in form.password.errors %}
+                                        <p>{{ error }}</p>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        {% if request.GET.next %}
+                            <input type="hidden" name="next" value="{{ request.GET.next }}">
+                        {% endif %}
+                        <div class="loader"></div>
+                        <button type="submit">Login</button>
+                    </form>
+
+                    <fieldset>
+                        <legend>OR</legend>
+                        <p class="forgot-password">
+                            Forgot password? <a href="{% url 'password_reset' %}">Reset</a>
+                        </p>
+                        <p>
+                            Not yet registered? <a href="{% url 'accounts:register' %}">Register</a>
+                        </p>
+                    </fieldset>
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock content %}

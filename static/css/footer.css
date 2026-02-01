@@ -1,0 +1,38 @@
+footer{
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 2rem;
+    font-size: 1.6rem;
+    z-index: 10;
+}
+
+footer .social-links{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+footer fieldset{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border: none;
+    gap: 5rem;
+    justify-items: center;
+}
+
+footer fieldset a{
+    display: block;
+    color: var(--dark-gray);
+    padding: 1rem;
+}
+
+footer fieldset .contact-details i{
+    width: 3rem;
+    /* margin-right: 1rem; */
+    text-align: center;
+}
+
+@media screen and (max-width:60rem) {
+    footer fieldset{
+        grid-template-columns: 1fr;
+    }
+}

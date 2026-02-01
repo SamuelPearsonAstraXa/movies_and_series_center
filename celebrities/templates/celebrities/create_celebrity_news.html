@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'celebrities/css/create_celebrity_news.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'celebrities/js/create_celebrity_news.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <div class="wrapper">
+        <h1>Create a celebrity news</h1>
+        <form action="" enctype="multipart/form-data" id="create-celebrity-news-form" novalidate method="post">
+            {% csrf_token %}
+            {{ form.as_div }}
+            <div id="response_msg"></div>
+            <div class="loader" style="margin: auto; margin-bottom: 2rem;"></div>
+            <button type="submit">Create</button>
+        </form>
+    </div>
+</main>
+{% endblock content %}

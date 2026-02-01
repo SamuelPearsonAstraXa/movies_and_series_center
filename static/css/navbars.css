@@ -1,0 +1,254 @@
+nav{
+    font-size: 1.6rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+    z-index: 5;
+}
+
+#main-navbar{
+    position: fixed;
+    width: 100%;
+    top: 0;
+}
+
+i{
+    cursor: default;
+}
+
+#main-navbar button{
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    margin-right: 1rem;
+    transition: opacity 500ms ease-in-out;
+    background-color: transparent;
+}
+
+#main-navbar button:hover{
+    opacity: 0.5;
+}
+
+#main-navbar .left-links {
+    float: left;
+}
+
+#main-navbar .left-links .logo{
+    letter-spacing: 1rem;
+    color: var(--dark-gray);
+    font-weight: 600;
+}
+
+#main-navbar .middle-links{
+    width: max-content;
+    margin: auto;
+}
+
+#main-navbar .right-links{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+#main-navbar .right-links .login-link{
+    color: white;
+    background-color: black;
+    padding: 0.5rem 1rem;
+    cursor: default;
+    border-radius: 5px;
+}
+
+#main-navbar .right-links .login-link i,
+form button i{
+    color: white;
+}
+
+#logout-toggler{
+    background-color: black;
+}
+
+#logout-form{
+    display: inline;
+    width: fit-content;
+}
+
+#logout-form button{
+    width: fit-content;
+    color: white;
+    background-color: skyblue;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+}
+
+#search-div{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 7;
+    /* background-color: rgba(0, 0, 0, 0.9); */
+    background-color: rgba(135, 207, 235, 0.9);
+    display: none;
+}
+
+#search-div .search-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#search-div form {
+    width: 50%;
+    position: relative;
+}
+
+#search-div .close-search-btn{
+    position: absolute;
+    top: 5rem;
+    right: 5rem;
+    font-size: 3rem;
+    color: white;
+}
+
+#search-div form input{
+    padding: 2rem;
+    padding-right: 6rem;
+    border: none;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 1);
+    width: 100%;
+    font-size: 2rem;
+    border-radius: 5px;
+    outline: none;
+}
+
+#search-div form button{
+    position: absolute;
+    right: 1rem;
+    top: 2rem;
+}
+
+.logout-form{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    left: 0;
+
+}
+
+.logout-form p{
+    padding: 2rem;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.logout-form form .log-btns{
+    background-color: white !important;
+    color: black !important;
+}
+
+.logout-form form .log-btns i{
+    color: black !important;
+}
+
+@media (prefers-color-scheme: dark){
+
+}
+
+@media (prefers-color-scheme: light){
+    
+}
+
+/* Popup menu */
+#main-navbar aside{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 6;
+    position: absolute;
+    top: 4rem;
+    border-radius: 5px;
+    left: 1rem;
+    display: none;
+}
+
+#main-navbar aside .links{
+    position: relative;
+    width: max-content;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#main-navbar aside .sub-links{
+    display: block;
+    padding-left: 3rem;
+}
+
+#main-navbar aside a{
+    display: block;
+    padding: 1rem 4rem 1rem 1rem;
+    position: relative;
+    color: var(--dark-gray);
+}
+
+#main-navbar aside a:first-child{
+    border-radius: 5px 5px 0 0;
+}
+
+#main-navbar aside a:last-child{
+    border-radius: 0 0 5px 5px;
+}
+
+#main-navbar aside a i{
+    position: absolute;
+    right: 1rem;
+    top: 1.2rem;
+}
+
+#main-navbar aside .sub-menu{
+    display: none;
+}
+
+#main-navbar aside a img{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 1rem;
+}
+
+#main-navbar aside a.profile-link i{
+    top: 2rem;
+}
+
+@media screen and (max-width:60rem) {
+    #search-div{
+        padding: 2rem;
+    }
+
+    #search-div form{
+        width: 100%;
+    }
+
+    #search-div form input{
+        padding: 1rem;
+        padding-right: 4.5rem;
+    }
+
+    #search-div form button{
+        right: 0;
+        top: 1rem;
+    }
+
+    #search-div .close-search-btn{
+        top: 2rem;
+        right: 2rem;
+    }
+}

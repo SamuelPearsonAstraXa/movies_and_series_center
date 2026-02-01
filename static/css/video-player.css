@@ -1,0 +1,130 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+.video-player-wrapper{
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+}
+ .video-player-wrapper
+.video-container{
+    position: relative;
+    aspect-ratio: 16/9;
+}
+
+:fullscreen .video-player-wrapper .video-container{
+    aspect-ratio: auto;
+    width: 50vw;
+    height: 100vh;
+}
+
+.video-file video{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px;
+    background-color: black;
+}
+
+video:fullscreen{
+    object-fit: contain;
+}
+
+:fullscreen video{
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+    background-color: black;
+}
+
+:-webkit-full-screen video {
+    width: 100vw;
+    height: 100vh;
+    object-fit: contain;
+}
+
+:-webkit-full-screen .video-player-wrapper .video-container {
+    width: 100vw;
+    height: 100vh;
+}
+
+.video-controls{
+    position: absolute;
+    bottom: 0.4rem;
+    width: 100%;
+    border-radius: 0 0 1rem 1rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.7), rgba(0,0,0,0.2))
+}
+
+.video-controls button{
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    color: white;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 500ms ease-in-out;
+    vertical-align: middle;
+}
+
+.video-controls button:hover{
+    opacity: 0.5;
+}
+
+.video-controls .timer input{
+    width: 100%;
+}
+
+.video-controls .btns{
+    padding: 0.2rem 2rem 2rem 0.5rem;
+    position: relative;
+    width: 100%;
+}
+
+.video-controls .btns p{
+    color: white;
+    text-shadow: 0 0 10px white;
+    letter-spacing: 2px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.play-video-btn{
+    margin-right: 5rem;
+}
+
+.expand-video-btn{
+    /* position: absolute;
+    right: 2rem;
+    top: 0.5rem; */
+    float: right;
+}
+
+.video-controls .btns .center{
+    position: relative;
+    width: fit-content;
+    display: inline-flex;
+    margin-right: 4rem;
+    gap: 3rem;
+    vertical-align: baseline;
+}
+
+.video-controls .btns .volume-div{
+    position: relative;
+}
+
+.video-controls .btns .volume-div input{
+    vertical-align: middle;
+}

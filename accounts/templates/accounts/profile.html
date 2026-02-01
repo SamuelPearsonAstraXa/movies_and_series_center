@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'accounts/css/profile.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <section class="wrapper-1">
+            <header>
+                <img src="{{ user.profile_img.url }}" alt="">
+                <div class="user-details">
+                    <p><span>Username:</span> {{ user.username }}</p>
+                    <p><span>Fullname:</span> {{ user.get_full_name }}</p>
+                    <p><span>Email:</span> {{ user.email }}</p>
+                </div>
+            </header>
+            <section class="web-models">
+                <h2>Web Models</h2>
+                <div>
+                    <div class="inner-div">
+                        <p>Movies</p>
+                        <p class="model-object-count">{{ movies.count }}</p>
+                        <a href=""><i class="fas fa-plus"></i></a>
+                    </div>
+                    <div class="inner-div">
+                        <p>Series</p>
+                        <p class="model-object-count">{{ series.count }}</p>
+                        <a href=""><i class="fas fa-plus"></i></a>
+                    </div>
+                    <div class="inner-div">
+                        <p>Actors</p>
+                        <p class="model-object-count">{{ actors.count }}</p>
+                        <a href=""><i class="fas fa-plus"></i></a>
+                    </div>
+                    <div class="inner-div">
+                        <p>Celebrities</p>
+                        <p class="model-object-count">{{ celebrities.count }}</p>
+                        <a href=""><i class="fas fa-plus"></i></a>
+                    </div>
+                    <div class="inner-div">
+                        <p>Did you know?</p>
+                        <p class="model-object-count">{{ did_you_knows.count }}</p>
+                        <a href=""><i class="fas fa-plus"></i></a>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section class="wrapper-2">
+
+        </section>
+    </div>
+</main>
+{% endblock content %}

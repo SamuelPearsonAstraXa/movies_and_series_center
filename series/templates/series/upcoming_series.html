@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'series/css/upcoming_series.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block middle_navbar_links %}
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+                <a href="{% url 'series:upload' %}"><i class="fas fa-cloud-upload"></i> Upload a series</a>
+        {% endif %}
+    {% endif %}
+{% endblock middle_navbar_links %}
+
+{% block content %}
+<main>
+    <div class="wrapper">
+        <header>
+            <h1>Upcoming series</h1>
+        </header>
+        <section class="series-list">
+            {% for series_obj in series %}
+                <a href="{% url 'series:details' series_obj.slug %}" class="series-obj-card">
+                    <div class="banner-img">
+                        <img src="{{ series_obj.banner_img.url }}" alt="{{ series_obj.title }}">
+                    </div>
+                    <div class="series-obj-info">
+                        <h2>{{ series_obj.title }}</h2>
+                        <p>{{ series_obj.production_year }}</p>
+                    </div>
+                </a>
+            {% endfor %}
+        </section>
+
+        <div class="pagenation">
+            <div>
+                {% if page_obj.has_previous %}
+                    <a href="?{{ query_params }}&page={{ page_obj.previous_page_number }}"><i class="fas fa-arrow-left"></i> Previous</a>
+                {% endif %}
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                {% if page_obj.has_next %}
+                    <a href="?{{ query_params }}page={{ page_obj.next_page_number }}">Next <i class="fas fa-arrow-right"></i></a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock content %}

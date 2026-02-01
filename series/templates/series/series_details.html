@@ -1,0 +1,105 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'series/css/series_details.css' %}">
+<link rel="stylesheet" href="{% static 'css/video-player.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'js/video-player.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block middle_navbar_links %}
+    {% if user.is_authenticated %}
+        {% if user.is_staff %}
+                <a href="{% url 'series:update' series.slug %}"><i class="fas fa-cloud-upload"></i> Update</a>
+        {% endif %}
+    {% endif %}
+{% endblock middle_navbar_links %}
+
+{% block content %}
+<main>
+    <div class="group-1">
+        <img src="{{ series.banner_img.url }}" alt="{{ series.title }}" class="page-banner">
+        <div class="wrapper">
+            <div class="container">
+                <header>
+                    <img src="{{ series.banner_img.url }}" alt="{{ series.title }}">
+                    <div class="series-details">
+                        <h1>{{ series.title }} ({{ series.production_year }})</h1>
+                        <div class="description">
+                            <p>{{ series.description }}</p>
+                        </div>
+                        <div>
+                            <p><strong>Release date:</strong> {{ series.release_date }}</p>
+                            <p><strong>Producer:</strong> {{ series.producer }}</p>
+                            <p><strong>Director:</strong> {{ series.director }}</p>
+                            <p><strong>Production countries:</strong> {{ series.production_countries }}</p>
+                            <p><strong>No. of Episodes:</strong> {{ series.num_of_episodes }}</p>
+                            <p><strong>Last updated:</strong> {{ series.update_date | timesince }} <small>ago</small></p>
+                        </div>
+                    </div>
+                </header>
+                
+            </div>
+        </div>
+        <section class="trailer">
+            <div class="video-player-wrapper">
+                <div class="video-container">
+                    <div class="video-file">
+                        <video src="{{ series.trailer.url }}"  preload="metadata"></video>
+                    </div>
+                    <div class="video-controls">
+                        <div class="timer">
+                            <input type="range" value="0" id="timer" min="0" step="0.1">
+                        </div>
+                        <div class="btns">
+                            <button class="primary play-video-btn"><i class="fas fa-play"></i></button>
+                            <div class="center">
+                                <p>
+                                    <span class="elapsed-time">00:00</span> /
+                                    <span class="full-time">00:00</span>
+                                </p>
+                                <div class="volume-div">
+                                    <button class="volume-btn"><i class="fas volume-icon fa-volume-high"></i></button>
+                                    <input type="range" name="volume-input" id="volume-input" value="0.1" step="0.05" min="0" max="1">
+                                </div>
+                            </div>
+                            <button class="primary expand-video-btn"><i class="fas fa-expand"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="group-2">
+        <section class="related-series">
+            <h2>Related series</h2>
+            {% if related_series.count == '0' %}
+                <p class="no-related-series">No related series</p>
+            {% else %}
+                <div class="related-series-list">
+                    {% for related_series_obj in related_series %}
+                        {% if related_series_obj.id != series.id %}
+                            <div class="related-series-card">
+                                <img src="{{ related_series_obj.banner_img.url }}" alt="{{ related_series_obj.title }}">
+                                <div class="related-series-details">
+                                    <h3>{{ related_series_obj.title }}</h3>
+                                    <p>({{ related_series_obj.production_year }})</p>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </section>
+    </div>
+</main>
+{% endblock content %}
