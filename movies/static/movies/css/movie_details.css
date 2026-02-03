@@ -61,6 +61,12 @@ main img.page-banner{
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9));
 }
 
+.trailer h4{
+    padding-left: 1rem;
+    color: white;
+    text-shadow: 0 0 10px white;
+}
+
 .group-2{
     position: relative;
     padding: 1rem;
@@ -79,7 +85,7 @@ main img.page-banner{
 
 .related-movies-list{
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 }
 
@@ -101,4 +107,33 @@ main img.page-banner{
 .related-movies .no-related-movie{
     padding: 2rem;
     font-size: 2rem;
+}
+
+@media screen and (max-width:60rem){
+    html{
+        font-size: 50%;
+    }
+
+    .wrapper{
+        padding: 1rem;
+    }
+
+    .wrapper header img{
+        margin: 0;
+        width: 100%;
+        max-width: 90dvw;
+        object-fit: contain;
+    }
+
+    .wrapper header .movie-details{
+        display: block;
+    }
+
+    .wrapper header h1{
+        text-align: center;
+    }
+
+    .wrapper .movie-details .description{
+        margin: 1rem auto;
+    }
 }

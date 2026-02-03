@@ -128,3 +128,21 @@ video:fullscreen{
 .video-controls .btns .volume-div input{
     vertical-align: middle;
 }
+
+@media screen and (max-width:60rem) {
+    html{
+        font-size: 50%;
+    }
+
+    .video-player-wrapper{
+        padding: 1rem;
+    }
+
+    .play-video-btn{
+        margin: 0;
+    }
+
+    .video-controls .btns .center{
+        margin: 0;
+    }
+}
