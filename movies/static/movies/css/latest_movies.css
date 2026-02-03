@@ -43,3 +43,23 @@ main{
     display: flex;
     gap: 3rem;
 }
+
+@media screen and (max-width:60rem) {
+    html{
+        font-size: 50%;
+    }
+
+    .movies-list{
+        grid-template-columns: 1fr;
+    }
+
+    .upload-movie-btn{
+        margin-right: 10rem;
+        position: relative;
+        top: 0.2rem;
+    }
+
+    .upload-movie-btn span{
+        display: none;
+    }
+}

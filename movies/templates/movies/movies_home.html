@@ -16,7 +16,7 @@
 {% block middle_navbar_links %}
     {% if user.is_authenticated %}
         {% if user.is_staff %}
-                <a href="{% url 'movies:upload' %}"><i class="fas fa-cloud-upload"></i> Upload a movie</a>
+                <a class="upload-movie-btn" href="{% url 'movies:upload' %}"><i class="fas fa-cloud-upload"></i><span> Upload a movie</span></a>
         {% endif %}
     {% endif %}
 {% endblock middle_navbar_links %}

@@ -19,7 +19,7 @@
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/layout.js' %}" defer></script>
-    <script src="{% static 'js/navbar.js' %}" defer></script>
+    <script src="{% static 'js/navbars.js' %}" defer></script>
 
     <script>
         $(document).ready(e=>{
@@ -34,7 +34,7 @@
     <!-- Main navigation bar -->
     <nav id="main-navbar">
         <div class="left-links">
-            <button class="aside-navbar-toggler"><i class="fas fa-bars"></i></button>
+            <button class="aside-navbar-toggler mini-btns"><i class="fas fa-bars"></i></button>
             <a href="{% url 'core:home' %}" class="logo">MSC</a>
         </div>
         <div class="middle-links">
@@ -43,27 +43,33 @@
         </div>
         <div id="search-div">
             <div class="search-wrapper">
-                <button id="close-search-div-btn" class="close-search-btn"><i class="fas fa-close"></i></button>
+                <button id="close-search-div-btn" class="mini-btns close-search-btn"><i class="fas fa-close"></i></button>
                 <form action="" method="get">
                     <input type="search" name="search_query" id="search_query" placeholder="Search for something">
-                    <button type="button"><i class="fas fa-search"></i></button>
+                    <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
         </div>
-        <div class="logout-form" id="logout-form-div">
-            <form action="{% url 'logout' %}" id="logout-form" method="post">
-                {% csrf_token %}
-                <p>Are you sure you wanna logout?</p>
-                <button class="log-btns " id="logout-btn" type="submit">Yes &nbsp; <i class="fas fa-sign-out"></i></button>
-                <button class="log-btns cancle-logout-btn">Cancle</button>
-            </form>
-        </div>
+        <!-- <div class="logout-form" id="logout-form-div">
+            
+        </div> -->
         <div class="right-links">
-            <button id="open-search-div-btn"><i class="fas fa-search"></i></button>
-            <button><i class="fas fa-moon"></i></button>
+            <button class="mini-btns" id="open-search-div-btn"><i class="fas fa-search"></i></button>
+            <button class="mini-btns"><i class="fas fa-moon"></i></button>
             {% if request.user.is_authenticated %}
-                <form action="" method="post" style="display: inline-block;">
-                    <button id="logout-toggler" type="button">Logout</button>&nbsp;
+                <form action="{% url 'logout' %}" id="logout-form" method="post">
+                    {% csrf_token %}
+                    <!-- <p>Are you sure you wanna logout?</p> -->
+                    <button class="log-btns " id="logout-btn" type="button">Logout &nbsp;<i class="fas fa-sign-out"></i></button>
+                    <!-- <button class="log-btns cancle-logout-btn">Cancle</button> -->
+                
+                    <div class="logout-confirm">
+                        <p>Are you sure you wanna logout?</p>
+                        <div class="logout-btns">
+                            <button type="submit">Yes</button>
+                            <button type="button" id="cancel-logout-btn">No</button>
+                        </div>
+                    </div>
                 </form>
             {% else %}
                 <a href="{% url 'login' %}" class="login-link">Login &nbsp; <i class="fas fa-sign-in"></i></a>

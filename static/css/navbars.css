@@ -29,6 +29,15 @@ i{
     opacity: 0.5;
 }
 
+#main-navbar .right-links #logout-form #logout-btn{
+    height: fit-content;
+    width: fit-content;
+    padding: 0.5rem 1rem;
+    font-size: 1.4rem;
+    letter-spacing: 1px;
+    vertical-align: middle;
+}
+
 #main-navbar .left-links {
     float: left;
 }
@@ -50,6 +59,38 @@ i{
     right: 1rem;
 }
 
+#main-navbar .right-links .logout-confirm{
+    background-color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    width: max-content;
+    right: 1rem;
+    text-align: center;
+    display: none;
+}
+
+#main-navbar .right-links .logout-confirm p{
+   margin-bottom: 2rem;
+   padding: 1rem;
+}
+
+#main-navbar .right-links .logout-confirm .logout-btns{
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   gap: 3rem;
+}
+
+#main-navbar .right-links .logout-confirm .logout-btns button{
+   width: 100%;
+   background-color: red;
+}
+
+#main-navbar .right-links .logout-confirm .logout-btns button#cancel-logout-btn{
+   background-color: skyblue;
+}
+
 #main-navbar .right-links .login-link{
     color: white;
     background-color: black;
@@ -61,10 +102,6 @@ i{
 #main-navbar .right-links .login-link i,
 form button i{
     color: white;
-}
-
-#logout-toggler{
-    background-color: black;
 }
 
 #logout-form{
@@ -124,10 +161,29 @@ form button i{
     outline: none;
 }
 
-#search-div form button{
+#search-div form input:focus{
+    background-color: rgba(255, 255, 255, 0.8);
+    outline: 5px solid blue;
+    outline-offset: inset;
+}
+
+#search-div form button[type='submit']{
     position: absolute;
     right: 1rem;
     top: 2rem;
+    background-color: transparent;
+    border: none;
+    width: 3rem;
+    height: 3rem;
+    border: none;
+    border-radius: 50%;
+    margin-right: 1rem;
+    transition: opacity 500ms ease-in-out;
+    background-color: transparent;
+}
+
+#search-div form button[type='submit'] i{
+    color: skyblue !important;
 }
 
 .logout-form{
@@ -160,13 +216,6 @@ form button i{
     color: black !important;
 }
 
-@media (prefers-color-scheme: dark){
-
-}
-
-@media (prefers-color-scheme: light){
-    
-}
 
 /* Popup menu */
 #main-navbar aside{
@@ -240,9 +289,10 @@ form button i{
     #search-div form input{
         padding: 1rem;
         padding-right: 4.5rem;
+        font-size: 2rem;
     }
 
-    #search-div form button{
+    #search-div form button[type='submit']{
         right: 0;
         top: 1rem;
     }
