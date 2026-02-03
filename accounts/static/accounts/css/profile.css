@@ -12,6 +12,7 @@ section.wrapper-1{
     border-radius: 1rem;
     min-width: 80%;
     display: grid;
+    position: relative;
     grid-template-columns: 1fr 1fr;
 }
 
@@ -37,6 +38,12 @@ header .user-details{
 
 header .user-details p{
     padding: 1rem;
+}
+
+.edit-profile-link{
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
 }
 
 .web-models{

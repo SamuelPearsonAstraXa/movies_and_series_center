@@ -25,6 +25,7 @@
                     <p><span>Email:</span> {{ user.email }}</p>
                 </div>
             </header>
+            <a href="{% url 'accounts:edit-user-profile' user.slug %}" class="edit-profile-link"><i class="fas fa-edit"></i> Edit</a>
             <section class="web-models">
                 <h2>Web Models</h2>
                 <div>

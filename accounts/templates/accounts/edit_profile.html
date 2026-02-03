@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'accounts/css/edit_profile.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+<script src="{% static 'accounts/js/edit_profile.js' %}" defer></script>
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <div class="wrapper">
+        <h1>Edit your Profile</h1>
+        <form action="" method="post" enctype="multipart/form-data" id="edit-user-profile-form">
+            {% csrf_token %}
+            <div class="sections">
+                <section class="profile-img">
+                    <div class="images">
+                        <div class="old">
+                            <h5>Current profile image</h5>
+                            <img src="{{ user.profile_img.url }}" alt="{{ user.get_full_name }}">
+                            <p>{{ user.profile_img.name }}</p>
+                        </div>
+                        <div class="new" id="preview_container">
+                            <h5>New profile image</h5>
+                            <p class="no-preview-msg">No image selected to preview.</p>
+                        </div>
+                    </div>
+                    <div style="margin-top: 5rem;">
+                        <i class="fas input-icon fa-image" style="display: none;"></i>
+                        <label for="id_profile_img">Select a profile image</label>
+                        <input type="file" name="profile_img" id="id_profile_img" accept="image/*">
+                    </div>
+                </section>
+                <section>
+                    <div>
+                        <i class="fas input-icon fa-user"></i>
+                        <label for="id_username">Username</label>
+                        {{ form.username }}
+                    </div>
+                    <div>
+                        <i class="fas input-icon fa-user"></i>
+                        <label for="id_first_name">First name</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div>
+                        <i class="fas input-icon fa-user"></i>
+                        <label for="id_last_name">Last name</label>
+                        {{ form.last_name }}
+                    </div>
+                    <div>
+                        <i class="fas input-icon fa-phone"></i>
+                        <label for="id_phone_number">Phone number</label>
+                        {{ form.phone_number }}
+                    </div>
+                    <div>
+                        <i class="fas input-icon fa-calendar"></i>
+                        <label for="id_date_of_birth">Date of birth</label>
+                        {{ form.date_of_birth }}
+                    </div>
+                </section>
+            </div>
+            <div id="response_msg"></div>
+            <div class="loader" style="margin: 2rem auto;"></div>
+            <button type="submit">Update profile</button>
+        </form>
+    </div>
+    <!-- <form action="">
+        {{ form.as_div }}
+    </form> -->
+</main>
+{% endblock content %}
