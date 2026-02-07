@@ -70,6 +70,10 @@ main video{
     transition: opacity 500ms ease-in-out;
 }
 
+.wrapper form div button i{
+    color: var(--dark-gray);
+}
+
 .wrapper .loader{
     display: none;
 }

@@ -8,6 +8,9 @@ const show_password_btn_1 = document.getElementById('show-password1');
 const show_password_btn_2 = document.getElementById('show-password2');
 const show_password_btn_icon_1 = document.querySelector('#show-password1 i');
 const show_password_btn_icon_2 = document.querySelector('#show-password2 i');
+const loader = document.querySelector('.loader');
+const form = document.getElementById('register-form');
+const response_msg = document.getElementById('response_msg');
 
 const username_icon = document.querySelector('.username-icon');
 const email_icon = document.querySelector('.email-icon');
@@ -32,8 +35,8 @@ password2.setAttribute('title', 'Confirm Password')
 show_hide_password(show_password_btn_1, password1, show_password_btn_icon_1)
 show_hide_password(show_password_btn_2, password2, show_password_btn_icon_2)
 
-password_input_defaulter(password1, show_password_btn_icon_1, show_password_btn_1)
-password_input_defaulter(password2, show_password_btn_icon_2, show_password_btn_2)
+// password_input_defaulter(password1, show_password_btn_icon_1, show_password_btn_1)
+// password_input_defaulter(password2, show_password_btn_icon_2, show_password_btn_2)
 
 focus_input_field(username_icon, username)
 focus_input_field(email_icon, email)
@@ -41,6 +44,48 @@ focus_input_field(firstname_icon, first_name)
 focus_input_field(lastname_icon, last_name)
 focus_input_field(password1_icon, password1)
 focus_input_field(password2_icon, password2)
+
+form.addEventListener('submit', e=>{
+    e.preventDefault();
+    loader.style.display = 'block';
+    response_msg.style.display = 'none';
+
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+            'X-Requested-with': 'XMLHttpRequest'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            loader.style.display = 'none';
+            response_msg.style.display = 'block';
+            response_msg.innerHTML = `<p style='color:green;'>You have been registered successfully!</p>`
+            setTimeout(() => {
+                window.location = data.success_url;
+            }, 2000);
+        }else{
+            loader.style.display = 'none';
+            response_msg.style.display = 'block';
+
+            let error_html = `<ul style='color:red;'>`;
+            for (let field in data.error){
+                error_html += `<li><strong> ${field.toUpperCase()}:</strong> ${data.error[field]} </li>`;
+            }
+            error_html += '</ul>';
+            response_msg.innerHTML = error_html;
+        }
+    })
+
+    .catch(error => {
+        console.error('Error ', error);
+        loader.style.display = 'none';
+        response_msg.style.display = 'block';
+        response_msg.innerHTML = `<p style='color:red;'>There was an error during the registration process.</p>`
+    })
+})
 
 function focus_input_field(element, input_field) {
     element.addEventListener('click', e=>{

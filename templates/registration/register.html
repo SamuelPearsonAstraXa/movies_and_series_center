@@ -24,7 +24,7 @@ Register
                 </div>
 
                 <div class="register-form">
-                    <form action="" method="POST" novalidate>
+                    <form action="" method="POST" novalidate id="register-form">
                         {% csrf_token %}
                         <div>
                             <!-- <label for="id_email">{{ form.email.label}}</label> -->
@@ -105,6 +105,8 @@ Register
                             By registering, you agree to the <a href="">terms</a>
                             and <a href="">privacy policies</a> of using our services.
                         </p>
+                        <div class="loader" style="margin: auto;"></div>
+                        <div id="response_msg"></div>
                         <button type="submit">Register</button>
                     </form>
 

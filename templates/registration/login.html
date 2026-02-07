@@ -21,7 +21,7 @@ Login
             <h1>MSC Login</h1>
             <section class="form-container">
                 <div class="login-form" id="login-form">
-                    <form method="post" novalidate>
+                    <form method="post" novalidate id="user-login-form">
                         {% csrf_token %}
                         <div>
                             <!-- <label for="id_username">{{ form.username.label }}</label> -->
@@ -56,7 +56,8 @@ Login
                         {% if request.GET.next %}
                             <input type="hidden" name="next" value="{{ request.GET.next }}">
                         {% endif %}
-                        <div class="loader"></div>
+                        <div class="loader" style="margin: auto;"></div>
+                        <div id="response_msg"></div>
                         <button type="submit">Login</button>
                     </form>
 

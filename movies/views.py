@@ -5,14 +5,14 @@ from django.utils import timezone
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 from .forms import UploadMovieForm, UpdateMovieForm
 from .models import Movie
-from django_filters.views import FilterView
-from .filters import MovieFilter
+# from django_filters.views import FilterView
+# from .filters import MovieFilter
 
-class UpcomingMoviesView(FilterView, ListView):
+class UpcomingMoviesView(ListView):
     model = Movie
     template_name = 'movies/upcoming_movies.html'
     paginate_by = 30
-    filterset_class = MovieFilter
+    # filterset_class = MovieFilter
     context_object_name = 'movies'
 
     def get_queryset(self):
@@ -30,11 +30,11 @@ class UpcomingMoviesView(FilterView, ListView):
 
         return context
 
-class LatestMoviesView(FilterView, ListView):
+class LatestMoviesView(ListView):
     model = Movie
     template_name = 'movies/latest_movies.html'
     paginate_by = 30
-    filterset_class = MovieFilter
+    # filterset_class = MovieFilter
     context_object_name = 'movies'
 
     def get_queryset(self):
@@ -107,11 +107,11 @@ class UploadMovieView(CreateView):
         context['title'] = 'Upload Movie'
         return context
 
-class MoviesHomeView(FilterView, ListView):
+class MoviesHomeView(ListView):
     model = Movie
     template_name = 'movies/movies_home.html'
     paginate_by = 30
-    filterset_class = MovieFilter
+    # filterset_class = MovieFilter
 
     context_object_name = 'movies'
 

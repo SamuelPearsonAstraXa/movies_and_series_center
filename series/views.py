@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.views.generic import TemplateView, ListView, CreateView, DetailView, UpdateView
 from django.utils import timezone
 from datetime import timedelta
-from django_filters.views import FilterView
+# from django_filters.views import FilterView
 from .forms import UploadSeriesForm, UpdateSeriesForm
 from .models import Series
 
@@ -42,7 +42,7 @@ class UpdateSeriesView(UpdateView):
         context['title'] = 'Update Series'
         return context
 
-class UpcomingSeriesView(FilterView, ListView):
+class UpcomingSeriesView(ListView):
     model = Series
     template_name = 'series/upcoming_series.html'
     paginate_by = 30
@@ -65,7 +65,7 @@ class UpcomingSeriesView(FilterView, ListView):
 
         return context
 
-class LatestSeriesView(FilterView, ListView):
+class LatestSeriesView(ListView):
     model = Series
     template_name = 'series/latest_series.html'
     paginate_by = 30
@@ -108,7 +108,7 @@ class UploadSeriesView(CreateView):
         context['title'] = 'Upload Series'
         return context
 
-class SeriesHomeView(FilterView, ListView):
+class SeriesHomeView(ListView):
     template_name = 'series/series_home.html'
     model = Series
     paginate_by = 30

@@ -27,7 +27,7 @@ INSTALLED_APPS = [
 
     'django_browser_reload',
     'django_watchfiles',
-    'django_filters',
+    # 'django_filters',
 
     'accounts',
     'core',

@@ -18,7 +18,7 @@ class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = '__all__'
-        # exclude = ['last_login', 'is_staff', 'is_superuser', 'groups', 'is_active', 'date_joined', 'user_permissions', 'slug','password']
+        exclude = ['last_login', 'is_staff', 'is_superuser', 'groups', 'is_active', 'date_joined', 'user_permissions', 'slug','password']
 
         widgets = {
             'date_of_birth': forms.DateInput(attrs={'type':'date'}),
