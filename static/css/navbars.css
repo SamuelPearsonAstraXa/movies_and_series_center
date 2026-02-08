@@ -99,8 +99,7 @@ i{
     border-radius: 5px;
 }
 
-#main-navbar .right-links .login-link i,
-form button i{
+#main-navbar .right-links .login-link i{
     color: white;
 }
 

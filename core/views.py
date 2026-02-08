@@ -1,10 +1,42 @@
 from django.shortcuts import render
 from django.utils import timezone
 from datetime import timedelta
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from .models import BannerVideo, TopStory, DidYouKnow
 from movies.models import Movie
 from series.models import Series
+from actors.models import Actor
+from celebrities.models import Celebrity
+
+class SearchView(ListView):
+    model = Movie
+    template_name = 'core/search.html'
+    paginate_by = 50
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        sq = str(self.request.GET.get('search_query')).rstrip()
+
+        if sq:
+            context['searched'] = True
+
+            movies = Movie.objects.filter(title__icontains=sq)
+            series = Series.objects.filter(title__icontains=sq)
+            actors = Actor.objects.filter(name__icontains=sq)
+            facts = DidYouKnow.objects.filter(text__icontains=sq)
+            celebrities = Celebrity.objects.filter(name__icontains=sq)
+            total_results_count = celebrities.count() + facts.count() + actors.count() + series.count() + movies.count()
+
+            context['movies'] = movies
+            context['series'] = series
+            context['actors'] = actors
+            context['facts'] = facts
+            context['celebrities'] = celebrities
+            context['total_results_count'] = total_results_count
+
+        context['title'] = 'Search'
+        return context
 
 class HomeView(TemplateView):
     template_name = 'core/index.html'

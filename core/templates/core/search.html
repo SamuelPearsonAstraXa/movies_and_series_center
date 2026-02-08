@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+{% block title %}
+Home
+{% endblock title %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'core/css/search.css' %}">
+{% endblock styles %}
+
+{% block scripts %}
+{% endblock scripts %}
+
+{% block content %}
+<main>
+    <header>
+        <div class="search-form">
+            <form action="" method="get">
+                <input type="search" name="search_query" id="search-query" placeholder="Search here">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+    </header>
+
+    <!-- Search results -->
+    <section class="search-results">
+        {% if searched %}
+            {% if total_results_count > 0 %}
+                <section class="movies-results">
+                    <h2>Movies <span>({{ movies.count }})</span></h2>
+                </section>
+
+                <section class="series-results">
+                    <h2>Series <span>({{ series.count }})</span></h2>
+                </section>
+                
+                <section class="actors-results">
+                    <h2>Actors <span>({{ actors.count }})</span></h2>
+                </section>
+
+                <section class="facts-results">
+                    <h2>Facts <span>({{ facts.count }})</span></h2>
+                </section>
+
+                <section class="celebrities-results">
+                    <h2>Celebrities <span>({{ celebrities.count }})</span></h2>
+                </section>
+            {% else %}
+                <p class="no-results">No results found.</p>
+            {% endif %}
+        {% endif %}
+    </section>
+</main>
+{% endblock content %}

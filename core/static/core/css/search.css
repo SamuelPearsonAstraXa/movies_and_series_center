@@ -1,0 +1,95 @@
+main{
+    padding: 2rem;
+    color:var(--dark-gray);
+}
+
+header{
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+header form{
+    width: 50%;
+    min-width: 50rem;
+    margin: auto;
+    position: relative;
+}
+
+header input{
+    padding: 2rem;
+    padding-right: 6rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    outline: none;
+    width: 100%;
+}
+
+header input:focus,
+header input:hover{
+    background-color: rgba(135, 207, 235, 0.1);
+}
+
+header button{
+    cursor: default;
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+header button i{
+    cursor: default;
+}
+
+.search-results{
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: white;
+    margin-top: 2rem;
+    display: grid;
+    gap: 2rem;
+}
+
+.search-results h2 span{
+    font-style: italic;
+    opacity: 0.5;
+}
+
+.movies-results{
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: rgba(135, 207, 235, 0.1);
+}
+
+.series-results{
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: rgba(135, 207, 235, 0.1);
+}
+
+.actors-results{
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: rgba(135, 207, 235, 0.1);
+}
+
+.facts-results{
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: rgba(135, 207, 235, 0.1);
+}
+
+.celebrities-results{
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: rgba(135, 207, 235, 0.1);
+}
+
+.no-results{
+    height: 50dvh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

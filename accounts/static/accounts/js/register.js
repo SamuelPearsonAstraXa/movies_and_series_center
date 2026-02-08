@@ -70,12 +70,14 @@ form.addEventListener('submit', e=>{
             loader.style.display = 'none';
             response_msg.style.display = 'block';
 
-            let error_html = `<ul style='color:red;'>`;
-            for (let field in data.error){
-                error_html += `<li><strong> ${field.toUpperCase()}:</strong> ${data.error[field]} </li>`;
-            }
-            error_html += '</ul>';
-            response_msg.innerHTML = error_html;
+            // let error_html = `<ul style='color:red;'>`;
+            // for (let field in data.error){
+            //     error_html += `<li><strong> ${field.toUpperCase()}:</strong> ${data.error[field]} </li>`;
+            // }
+            // error_html += '</ul>';
+            // response_msg.innerHTML = error_html;
+
+            response_msg.innerHTML = `<p style='color:red;'>Please fill in all fields.</p>`
         }
     })
 

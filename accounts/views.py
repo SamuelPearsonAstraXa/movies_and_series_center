@@ -9,6 +9,7 @@ from series.models import Series, Episode
 from core.models import DidYouKnow, TopStory
 from celebrities.models import Celebrity
 from actors.models import Actor
+import json
 
 from .models import CustomUser
 from .forms import CustomUserCreationForm, CustomUserChangeForm, EditUserProfileForm
@@ -73,7 +74,7 @@ class UserLoginView(LoginView):
 
     def form_invalid(self, form):
         if self.request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({'success': False, 'error': form.errors}, status=400)
+            return JsonResponse({'success': False, 'error': form.errors.get_json_data()}, status=400)
         return super().form_invalid(form)
         
     def get_context_data(self, **kwargs):

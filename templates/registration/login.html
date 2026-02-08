@@ -21,7 +21,7 @@ Login
             <h1>MSC Login</h1>
             <section class="form-container">
                 <div class="login-form" id="login-form">
-                    <form method="post" novalidate id="user-login-form">
+                    <form method="post" autocomplete="off" novalidate id="user-login-form">
                         {% csrf_token %}
                         <div>
                             <!-- <label for="id_username">{{ form.username.label }}</label> -->

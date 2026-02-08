@@ -9,6 +9,9 @@ const password_icon = document.querySelector('.password-icon');
 const form = document.getElementById('user-login-form');
 const loader = document.querySelector('.loader');
 
+username.setAttribute('autocomplete', 'new-username')
+password.setAttribute('autocomplete', 'new-password')
+
 username.setAttribute('placeHolder', 'Email address')
 username.setAttribute('title', 'Email address')
 password.setAttribute('placeHolder', 'Password')
@@ -35,7 +38,7 @@ form.addEventListener('submit', e=>{
         method: 'POST',
         body: form_data,
         headers: {
-            'X-Requested-with': 'XMLHttpRequest'
+            'X-Requested-With': 'XMLHttpRequest'
         }
     })
     .then(response => response.json())
@@ -43,7 +46,7 @@ form.addEventListener('submit', e=>{
         if (data.success) {
             loader.style.display = 'none';
             response_msg.style.display = 'block';
-            response_msg.innerHTML = `<p style='color:green;'>You have been registered successfully!</p>`
+            response_msg.innerHTML = `<p style='color:green; text-align: center;'>Login successful, redirecting...</p>`
             setTimeout(() => {
                 window.location = data.success_url;
             }, 2000);
@@ -58,7 +61,7 @@ form.addEventListener('submit', e=>{
             // error_html += '</ul>';
             // response_msg.innerHTML = error_html;
             console.log(data.error['__all__'])
-            response_msg.innerHTML = `<p>${data.error['__all__']}</p>`;
+            response_msg.innerHTML = `<p style='color:red;'>${data.error['__all__']}</p>`;
         }
     })
 
