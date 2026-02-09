@@ -2,6 +2,23 @@ from django.db import models
 from django.utils.text import slugify
 from uuid import uuid4
 from PIL import Image
+from accounts.models import CustomUser
+
+class Review(models.Model):
+    id  = models.UUIDField(default=uuid4, primary_key=True, editable=False)
+    reviewer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='reviewer')
+    movie = models.ForeignKey('Movie', on_delete=models.CASCADE, related_name='review_movie')
+    text = models.TextField(max_length=10000)
+    review_date = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(default='', blank=True)
+
+    def __str__(self):
+        return f'{self.reviewer.username}\'s review on the movie {self.movie.title}.'
+    
+    def save(self, *args, **kwargs):
+        if self.slug == '':
+            self.slug = slugify(self.id)
+        super().save(*args, **kwargs)
 
 class Movie(models.Model):
     id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
@@ -29,5 +46,4 @@ class Movie(models.Model):
     def save(self, *args, **kwargs):
         if self.slug == '':
             self.slug = slugify(self.title + str(self.production_year) + str(self.id))
-
         super().save(*args, **kwargs)

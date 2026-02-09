@@ -3,6 +3,22 @@ from accounts.models import CustomUser
 from django.utils.text import slugify
 from uuid import uuid4
 
+class Review(models.Model):
+    id  = models.UUIDField(default=uuid4, primary_key=True, editable=False)
+    reviewer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='series_reviewer')
+    series = models.ForeignKey('Series', on_delete=models.CASCADE, related_name='review_series')
+    text = models.TextField(max_length=10000)
+    review_date = models.DateTimeField(auto_now_add=True)
+    slug = models.SlugField(default='', blank=True)
+
+    def __str__(self):
+        return f'{self.reviewer.username}\'s review on the series {self.series.title}.'
+    
+    def save(self, *args, **kwargs):
+        if self.slug == '':
+            self.slug = slugify(self.id)
+        super().save(*args, **kwargs)
+
 class Episode(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True, editable=False)
     series = models.ForeignKey('Series', on_delete=models.CASCADE, related_name='episode_series')

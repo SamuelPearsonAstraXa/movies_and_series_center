@@ -26,6 +26,12 @@
     <div class="wrapper">
         <header>
             <h1>Upcoming movies</h1>
+            <div class="search-div">
+                <form action="" method="get">
+                    <input type="search" name="upcoming_movie_query" placeholder="Search upcoming movies here..." id="movie-search">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
         </header>
         <section class="movies-list">
             {% for movie in movies %}
@@ -38,6 +44,8 @@
                         <p>{{ movie.production_year }}</p>
                     </div>
                 </a>
+            {% empty %}
+                <p style="text-align: center;">No upcoming movies</p>
             {% endfor %}
         </section>
 

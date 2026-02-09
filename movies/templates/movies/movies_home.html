@@ -26,6 +26,14 @@
     <div class="wrapper">
         <header>
             <h1>All movies</h1>
+
+            <div class="search-div">
+                <form action="" method="get">
+                    <input type="search" name="movie_query" placeholder="Search all movies here..." id="movie-search-div">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
             <div class="movies-filter" style="display: none;">
                 <form action="" method="get">
                     {{ filter.form.as_div }}

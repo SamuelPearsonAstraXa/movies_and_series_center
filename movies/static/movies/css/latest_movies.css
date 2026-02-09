@@ -14,6 +14,36 @@ main{
     margin-bottom: 2rem;
 }
 
+.wrapper .search-div{
+    width: 50%;
+    margin: auto;
+    position: relative;
+    padding: 3rem;
+    margin-bottom: 5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.wrapper .search-div input{
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    transition: 500ms ease-in-out;
+}
+
+.wrapper .search-div input:focus,
+.wrapper .search-div input:hover{
+    background-color: rgba(135, 207, 235, 0.1);
+}
+
+.wrapper .search-div button{
+    position: absolute;
+    top: 4rem;
+    right: 4rem;
+    background-color: transparent;
+    border: none;
+}
+
 .movies-list{
     display: grid;
     grid-template-columns: repeat(6, 1fr);

@@ -26,6 +26,12 @@
     <div class="wrapper">
         <header>
             <h1>Latest movies</h1>
+            <div class="search-div">
+                <form action="" method="get">
+                    <input type="search" name="latest_movie_query" placeholder="Search latest movies here..." id="movie-search">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
         </header>
         <section class="movies-list">
             {% for movie in movies %}
