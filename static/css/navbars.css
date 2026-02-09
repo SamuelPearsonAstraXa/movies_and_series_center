@@ -216,6 +216,8 @@ i{
 }
 
 
+
+
 /* Popup menu */
 #main-navbar aside{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -270,6 +272,8 @@ i{
     border-radius: 50%;
     vertical-align: middle;
     margin-right: 1rem;
+    box-shadow: 0 0 10px skyblue;
+    outline: 1px dashed rgba(0, 0, 255, 0.5);
 }
 
 #main-navbar aside a.profile-link i{

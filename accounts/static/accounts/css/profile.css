@@ -11,8 +11,11 @@ section.wrapper-1{
     padding: 2rem;
     border-radius: 1rem;
     min-width: 80%;
-    display: grid;
     position: relative;
+}
+
+section.wrapper-1.staff{
+    display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
@@ -23,11 +26,20 @@ header{
     /* border-right: 1px solid rgba(0, 0, 0, 0.2); */
 }
 
+header h1{
+    padding: 2rem;
+    text-align: center;
+    font-size: 2.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 5rem;
+}
+
 header img{
     border-radius: 50%;
-    max-width: 20rem;
-    max-height: 20rem;
+    width: 20rem;
+    height: 20rem;
     vertical-align: middle;
+    box-shadow: 0 0 10px skyblue;
 }
 
 header .user-details{
@@ -38,6 +50,11 @@ header .user-details{
 
 header .user-details p{
     padding: 1rem;
+}
+
+header .user-details p span{
+    font-weight: 600;
+    font-style: italic;
 }
 
 .edit-profile-link{
@@ -80,7 +97,18 @@ section.wrapper-2{
     background-color: white;
     min-height: 10rem;
     width: 100%;
+    padding: 2rem;
     border-radius: 1rem;
+}
+
+section.wrapper-2.subscriptions h2{
+    font-size: 2.5rem;
+    text-align: center;
+    padding: 1rem;
+}
+
+section.wrapper-2.subscriptions p{
+    text-align: center;
 }
 
 @media screen and (max-width:60rem) {

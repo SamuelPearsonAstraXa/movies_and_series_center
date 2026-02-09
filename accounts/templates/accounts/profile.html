@@ -16,47 +16,68 @@
 {% block content %}
 <main>
     <div class="container">
-        <section class="wrapper-1">
-            <header>
-                <img src="{{ user.profile_img.url }}" alt="">
-                <div class="user-details">
-                    <p><span>Username:</span> {{ user.username }}</p>
-                    <p><span>Fullname:</span> {{ user.get_full_name }}</p>
-                    <p><span>Email:</span> {{ user.email }}</p>
-                </div>
-            </header>
-            <a href="{% url 'accounts:edit-user-profile' user.slug %}" class="edit-profile-link"><i class="fas fa-edit"></i> Edit</a>
-            <section class="web-models">
-                <h2>Web Models</h2>
-                <div>
-                    <div class="inner-div">
-                        <p>Movies</p>
-                        <p class="model-object-count">{{ movies.count }}</p>
-                        <a href=""><i class="fas fa-plus"></i></a>
+        {% if user.is_staff %}
+            <section class="wrapper-1 staff">
+                <header>
+                    <img src="{{ user.profile_img.url }}" alt="">
+                    <div class="user-details">
+                        <p><span>Username:</span> {{ user.username }}</p>
+                        <p><span>Fullname:</span> {{ user.get_full_name }}</p>
+                        <p><span>Email:</span> {{ user.email }}</p>
                     </div>
-                    <div class="inner-div">
-                        <p>Series</p>
-                        <p class="model-object-count">{{ series.count }}</p>
-                        <a href=""><i class="fas fa-plus"></i></a>
+                </header>
+                <a href="{% url 'accounts:edit-user-profile' user.slug %}" class="edit-profile-link"><i class="fas fa-edit"></i> Edit</a>
+                <section class="web-models">
+                    <h2>Web Models</h2>
+                    <div>
+                        <div class="inner-div">
+                            <p>Movies</p>
+                            <p class="model-object-count">{{ movies.count }}</p>
+                            <a href=""><i class="fas fa-plus"></i></a>
+                        </div>
+                        <div class="inner-div">
+                            <p>Series</p>
+                            <p class="model-object-count">{{ series.count }}</p>
+                            <a href=""><i class="fas fa-plus"></i></a>
+                        </div>
+                        <div class="inner-div">
+                            <p>Actors</p>
+                            <p class="model-object-count">{{ actors.count }}</p>
+                            <a href=""><i class="fas fa-plus"></i></a>
+                        </div>
+                        <div class="inner-div">
+                            <p>Celebrities</p>
+                            <p class="model-object-count">{{ celebrities.count }}</p>
+                            <a href=""><i class="fas fa-plus"></i></a>
+                        </div>
+                        <div class="inner-div">
+                            <p>Did you know?</p>
+                            <p class="model-object-count">{{ did_you_knows.count }}</p>
+                            <a href=""><i class="fas fa-plus"></i></a>
+                        </div>
                     </div>
-                    <div class="inner-div">
-                        <p>Actors</p>
-                        <p class="model-object-count">{{ actors.count }}</p>
-                        <a href=""><i class="fas fa-plus"></i></a>
-                    </div>
-                    <div class="inner-div">
-                        <p>Celebrities</p>
-                        <p class="model-object-count">{{ celebrities.count }}</p>
-                        <a href=""><i class="fas fa-plus"></i></a>
-                    </div>
-                    <div class="inner-div">
-                        <p>Did you know?</p>
-                        <p class="model-object-count">{{ did_you_knows.count }}</p>
-                        <a href=""><i class="fas fa-plus"></i></a>
-                    </div>
-                </div>
+                </section>
             </section>
-        </section>
+        {% else %}
+            <section class="wrapper-1 non-staff">
+                <header>
+                    <h1>Your profile</h1>
+                    <img src="{{ user.profile_img.url }}" alt="">
+                    <div class="user-details">
+                        <p><span>Username:</span> {{ user.username }}</p>
+                        <p><span>Fullname:</span> {{ user.get_full_name }}</p>
+                        <p><span>Phone:</span> {{ user.phone_number }}</p>
+                        <p><span>Email:</span> {{ user.email }}</p>
+                    </div>
+                </header>
+                <a href="{% url 'accounts:edit-user-profile' user.slug %}" class="edit-profile-link"><i class="fas fa-edit"></i> Edit</a>
+            </section>
+
+            <section class="wrapper-2 subscriptions">
+                <h2>Subscriptions</h2>
+                <p>No subscriptions yet!</p>
+            </section>
+        {% endif %}
 
         <section class="wrapper-2">
 
