@@ -93,6 +93,8 @@ a:hover{
     animation-duration: 500ms;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+    margin: auto;
+    display: none;
 }
 
 @keyframes spin {

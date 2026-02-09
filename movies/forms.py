@@ -1,5 +1,10 @@
 from django import forms
-from .models import Movie
+from .models import Movie, MovieReview
+
+class AddMovieReviewForm(forms.ModelForm):
+    class Meta:
+        model = MovieReview
+        fields = ['text',]
 
 class UpdateMovieForm(forms.ModelForm):
     class Meta:

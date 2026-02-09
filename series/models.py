@@ -66,6 +66,6 @@ class Series(models.Model):
     
     def save(self, *args, **kwargs):
         if self.slug == '':
-            self.slug = slugify(self.title + str(self.id))
+            self.slug = slugify(f'{self.title} - { str(self.id)}')
         
         super().save(*args, **kwargs)

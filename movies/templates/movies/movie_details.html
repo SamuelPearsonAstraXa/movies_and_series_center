@@ -13,6 +13,8 @@
 
 {% block scripts %}
 <script src="{% static 'js/video-player.js' %}" defer></script>
+<script src="{% static 'movies/js/add_movie_review.js' %}" defer></script>
+<script src="{% static 'movies/js/movie_review.js' %}" defer></script>
 {% endblock scripts %}
 
 {% block middle_navbar_links %}
@@ -80,6 +82,42 @@
     </div>
 
     <div class="group-2">
+        <!-- Movie review section -->
+        <section class="movie-reviews">
+            <h2>Reviews</h2>
+            <div class="reviews-list">
+                {% for review in reviews %}
+                    <div class="review-card">
+                        <div class="reviewer-info">
+                            <img src="{{ review.reviewer.profile_img.url }}" alt="{{ review.reviewer.username }}">
+                            <div>
+                                <p>{{ review.reviewer.username }}</p>
+                                <p class="review-date"><i class="fas fa-clock"></i> {{ review.review_date | timesince }} <span>ago</span></p>
+                            </div>
+                        </div>
+                        <div class="context">
+                            <p class="review-context-para">{{ review.text }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="add-review-form">
+                <form novalidate action="" method="post" id="add_movie_review_form">
+                    {% csrf_token %}
+                    <h4>Leave your review here.</h4>
+                    <input type="hidden" name="movie" value="{{ movie.id }}">
+                    <input type="hidden" name="submit_review">
+                    {{ review_form.as_div }}
+
+                    <div class="loader"></div>
+                    <div id="response_msg"></div>
+                    <button type="submit">Done</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Related movies section -->
         <section class="related-movies">
             <h2>Related movies</h2>
                 <div class="related-movies-list">

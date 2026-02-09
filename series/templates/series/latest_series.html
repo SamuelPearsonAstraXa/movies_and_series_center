@@ -26,6 +26,12 @@
     <div class="wrapper">
         <header>
             <h1>Latest series</h1>
+            <div class="search-div">
+                <form action="" method="get">
+                    <input type="search" name="upcoming_series_query" placeholder="Search upcoming series here..." id="series-search">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
         </header>
         <section class="series-list">
             {% for series_obj in series %}

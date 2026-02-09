@@ -4,7 +4,7 @@ from uuid import uuid4
 from PIL import Image
 from accounts.models import CustomUser
 
-class Review(models.Model):
+class MovieReview(models.Model):
     id  = models.UUIDField(default=uuid4, primary_key=True, editable=False)
     reviewer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='reviewer')
     movie = models.ForeignKey('Movie', on_delete=models.CASCADE, related_name='review_movie')
@@ -45,5 +45,5 @@ class Movie(models.Model):
     
     def save(self, *args, **kwargs):
         if self.slug == '':
-            self.slug = slugify(self.title + str(self.production_year) + str(self.id))
+            self.slug = slugify(f'{self.title } - { str(self.production_year) } - { str(self.id)}')
         super().save(*args, **kwargs)
