@@ -94,4 +94,15 @@ main{
     .upload-movie-btn span{
         display: none;
     }
+
+    .wrapper .search-div{
+        width: 100%;
+        padding: 0;
+        padding-bottom: 2rem;
+    }
+
+    .wrapper .search-div button{
+        top: 1rem;
+        right: 1rem;
+    }
 }

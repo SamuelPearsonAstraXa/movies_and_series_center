@@ -31,13 +31,14 @@ add_movie_review_form.addEventListener('submit', e=>{
                 document.getElementById('response_msg').innerHTML = data.error;
             }else{
                 const icon = '<i class="fas fa-hand-point-up"></i>'
-                document.getElementById('response_msg').innerHTML = `${data.errors['text']} ${icon} ${icon} ${icon}`;
+                document.getElementById('response_msg').innerHTML = `<p style='color:red;'>${data.errors['text']} ${icon} ${icon} ${icon}</p>`;
+                text.focus();
             }
         }
     })
     .catch(error => {
         console.error('Error ', error);
         loader.style.display = 'none';
-        document.getElementById('response_msg').innerHTML = `<p style='color:red;'>There was an error while uploading your movie.</p>`
+        document.getElementById('response_msg').innerHTML = `<p style='color:red;'>There was an error while adding your review. Make sure you're <a href="/accounts/user-login/?next=${window.location}">logged in!</a></p>`
     })
 })

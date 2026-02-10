@@ -99,6 +99,8 @@
                             <p class="review-context-para">{{ review.text }}</p>
                         </div>
                     </div>
+                {% empty %}
+                    <p class="review-card" style="text-align: center;">No reviews are available!</p>
                 {% endfor %}
             </div>
 
@@ -112,7 +114,7 @@
 
                     <div class="loader"></div>
                     <div id="response_msg"></div>
-                    <button type="submit">Done</button>
+                    <button type="submit">Add review &nbsp; &nbsp;<i class="fas fa-arrow-right"></i></button>
                 </form>
             </div>
         </section>

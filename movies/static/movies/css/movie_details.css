@@ -238,4 +238,22 @@ main img.page-banner{
     .wrapper .movie-details .description{
         margin: 1rem auto;
     }
+
+    .movie-reviews{
+        padding: 1rem;
+    }
+
+    .movie-reviews .reviews-list{
+        gap: 2rem;
+        grid-template-columns: 1fr;
+    }
+
+    .movie-reviews form{
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .movie-reviews form h4{
+        padding: 1rem;
+    }
 }
