@@ -44,6 +44,8 @@
                         <p>{{ movie.production_year }}</p>
                     </div>
                 </a>
+            {% empty %}
+                <p>No movies are available!</p>
             {% endfor %}
         </section>
 

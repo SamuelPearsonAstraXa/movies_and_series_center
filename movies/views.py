@@ -5,6 +5,7 @@ from django.utils import timezone
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, UpdateView
 from .forms import UploadMovieForm, UpdateMovieForm, AddMovieReviewForm
 from .models import Movie, MovieReview
+from django.db.models import Q
 # from django_filters.views import FilterView
 # from .filters import MovieFilter
 
@@ -45,8 +46,17 @@ class UpcomingMoviesView(ListView):
 
         # Showing movies that are to be released in the next 90 days
         upcoming_date = today + timedelta(days=90)
-
-        return Movie.objects.filter(release_date__lte=upcoming_date, release_date__gte=today).order_by('-upload_date')
+        queryset = Movie.objects.filter(release_date__lte=upcoming_date, release_date__gte=today)
+        movie_q = str(self.request.GET.get('upcoming_movie_query', '')).strip()
+        
+        if movie_q:
+            queryset = queryset.filter(
+                Q(title__icontains=movie_q) | Q(description__icontains=movie_q) | Q(category__icontains=movie_q) |
+                Q(production_year__icontains=movie_q) | Q(production_country__icontains=movie_q) | Q(producer__icontains=movie_q) | 
+                Q(director__icontains=movie_q)
+                )
+        
+        return queryset.order_by('-upload_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -66,8 +76,17 @@ class LatestMoviesView(ListView):
         today = timezone.now().date()
 
         cutoff_date = today - timedelta(days=60)
-
-        return Movie.objects.filter(release_date__gte=cutoff_date, release_date__lte=today).order_by('-upload_date')
+        queryset = Movie.objects.filter(release_date__gte=cutoff_date, release_date__lte=today)
+        movie_q = str(self.request.GET.get('latest_movie_query', '')).strip()
+        
+        if movie_q:
+            queryset = queryset.filter(
+                Q(title__icontains=movie_q) | Q(description__icontains=movie_q) | Q(category__icontains=movie_q) |
+                Q(production_year__icontains=movie_q) | Q(production_country__icontains=movie_q) | Q(producer__icontains=movie_q) | 
+                Q(director__icontains=movie_q)
+                )
+        
+        return queryset.order_by('-upload_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -160,8 +179,18 @@ class MoviesHomeView(ListView):
 
     def get_queryset(self):
         today = timezone.now().date()
-
-        return Movie.objects.filter(release_date__lte=today).order_by('-upload_date')
+        queryset = Movie.objects.filter(release_date__lte=today)
+        
+        movie_q = str(self.request.GET.get('movie_query', '')).strip()
+        
+        if movie_q:
+            queryset = queryset.filter(
+                Q(title__icontains=movie_q) | Q(description__icontains=movie_q) | Q(category__icontains=movie_q) |
+                Q(production_year__icontains=movie_q) | Q(production_country__icontains=movie_q) | Q(producer__icontains=movie_q) | 
+                Q(director__icontains=movie_q)
+                )
+        
+        return queryset.order_by('-upload_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

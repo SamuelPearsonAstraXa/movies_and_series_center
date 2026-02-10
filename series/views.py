@@ -6,6 +6,7 @@ from datetime import timedelta
 # from django_filters.views import FilterView
 from .forms import UploadSeriesForm, UpdateSeriesForm, AddSeriesReviewForm
 from .models import Series, SeriesReview
+from django.db.models import Q
 
 class SeriesDetailsView(DetailView):
     model = Series
@@ -73,8 +74,17 @@ class UpcomingSeriesView(ListView):
 
         # Showing series that are to be released in the next 90 days
         upcoming_date = today + timedelta(days=90)
-
-        return Series.objects.filter(release_date__lte=upcoming_date, release_date__gte=today).order_by('-upload_date')
+        queryset = Series.objects.filter(release_date__lte=upcoming_date, release_date__gte=today).order_by('-upload_date')
+        series_q = str(self.request.GET.get('upcoming_series_query', '')).strip()
+        
+        if series_q:
+            queryset = queryset.filter(
+                Q(title__icontains=series_q) | Q(description__icontains=series_q) | Q(category__icontains=series_q) |
+                Q(production_year__icontains=series_q) | Q(production_countries__icontains=series_q) | Q(producer__icontains=series_q) | 
+                Q(director__icontains=series_q)
+                )
+        
+        return queryset.order_by('-upload_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -95,8 +105,17 @@ class LatestSeriesView(ListView):
         today = timezone.now().date()
 
         cutoff_date = today - timedelta(days=60)
-
-        return Series.objects.filter(release_date__gte=cutoff_date, release_date__lte=today).order_by('-upload_date')
+        queryset = Series.objects.filter(release_date__gte=cutoff_date, release_date__lte=today).order_by('-upload_date')
+        series_q = str(self.request.GET.get('latest_series_query', '')).strip()
+        
+        if series_q:
+            queryset = queryset.filter(
+                Q(title__icontains=series_q) | Q(description__icontains=series_q) | Q(category__icontains=series_q) |
+                Q(production_year__icontains=series_q) | Q(production_countries__icontains=series_q) | Q(producer__icontains=series_q) | 
+                Q(director__icontains=series_q)
+                )
+        
+        return queryset.order_by('-upload_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -135,8 +154,18 @@ class SeriesHomeView(ListView):
 
     def get_queryset(self):
         today = timezone.now().date()
-
-        return Series.objects.filter(release_date__lte=today).order_by('-upload_date')
+        queryset = Series.objects.filter(release_date__lte=today).order_by('-upload_date')
+        
+        series_q = str(self.request.GET.get('series_query', '')).strip()
+        
+        if series_q:
+            queryset = queryset.filter(
+                Q(title__icontains=series_q) | Q(description__icontains=series_q) | Q(category__icontains=series_q) |
+                Q(production_year__icontains=series_q) | Q(production_countries__icontains=series_q) | Q(producer__icontains=series_q) | 
+                Q(director__icontains=series_q)
+                )
+        
+        return queryset.order_by('-upload_date')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
