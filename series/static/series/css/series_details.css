@@ -66,6 +66,107 @@ main img.page-banner{
     padding: 1rem;
 }
 
+/* Review List */
+.series-reviews{
+    padding: 2rem;
+    background-color: white;
+    border-radius: 1rem;
+}
+
+.series-reviews h2{
+    text-align: center;
+}
+
+/* Reviews list */
+.series-reviews .reviews-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+}
+
+.series-reviews .reviews-list .review-card{
+    position: relative;
+    background-color: rgba(135, 207, 235, 0.08);
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.series-reviews .reviews-list .review-card img{
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.series-reviews .reviews-list .review-card .reviewer-info div{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.series-reviews .reviews-list .review-card .reviewer-info div p{
+    font-size: 2rem;
+}
+
+.series-reviews .reviews-list .review-card .reviewer-info div .review-date{
+    font-size: 1rem;
+}
+
+.series-reviews .reviews-list .review-card .context{
+    padding: 1rem;
+    background-color: rgba(135, 207, 235, 0.08);
+    margin-top: 1rem;
+    border-radius: 1rem;
+    text-transform: initial;
+}
+
+/* Form */
+.series-reviews form{
+    width: 50%;
+    max-width: 40rem;
+    background-color: rgba(135, 207, 235, 0.1);
+    padding: 2rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+}
+
+.series-reviews form h4{
+    padding: 2rem;
+    font-size: 2rem;
+}
+
+.series-reviews form label{
+    display: none;
+}
+
+.series-reviews form div{
+    margin-bottom: 2rem;
+}
+
+.series-reviews form textarea{
+    width: 100%;
+    padding: 1rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    resize: none;
+    outline-color: skyblue;
+}
+
+.series-reviews form button{
+    width: 100%;
+    background-color: black;
+    border-radius: 1rem;
+    padding: 1rem;
+    text-align: center;
+    color: white;
+    border: none;
+    transition: opacity 500ms ease-in-out;
+}
+
+.series-reviews form button:hover{
+    opacity: 0.5;
+}
+
+/* Related series */
 .related-series{
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 1rem;
@@ -101,4 +202,65 @@ main img.page-banner{
 .related-series .no-related-series{
     padding: 2rem;
     font-size: 2rem;
+}
+
+@media screen and (max-width:60rem){
+    html{
+        font-size: 50%;
+    }
+
+    .wrapper{
+        padding: 1rem;
+    }
+
+    .wrapper header img{
+        margin: 0;
+        width: 100%;
+        max-width: 90dvw;
+        object-fit: contain;
+    }
+
+    .wrapper header .series-details{
+        display: block;
+    }
+
+    .wrapper header h1{
+        text-align: center;
+    }
+
+    .update-series-link span{
+        display: none;
+    }
+
+    .update-series-link i{
+        position: relative;
+        right: 4rem;
+        top: 0.3rem;
+    }
+
+    .wrapper .series-details .description{
+        margin: 1rem auto;
+    }
+
+    .series-reviews{
+        padding: 1rem;
+    }
+
+    .series-reviews .reviews-list{
+        gap: 2rem;
+        grid-template-columns: 1fr;
+    }
+
+    .series-reviews form{
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .series-reviews form h4{
+        padding: 1rem;
+    }
+
+    .related-series-list{
+        grid-template-columns: 1fr 1fr;
+    }
 }

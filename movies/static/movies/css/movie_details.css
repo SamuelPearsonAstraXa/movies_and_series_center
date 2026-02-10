@@ -235,6 +235,16 @@ main img.page-banner{
         text-align: center;
     }
 
+    .update-movie-link span{
+        display: none;
+    }
+
+    .update-movie-link i{
+        position: relative;
+        right: 4rem;
+        top: 0.3rem;
+    }
+
     .wrapper .movie-details .description{
         margin: 1rem auto;
     }

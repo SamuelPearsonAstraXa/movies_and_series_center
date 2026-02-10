@@ -20,7 +20,7 @@
 {% block middle_navbar_links %}
     {% if user.is_authenticated %}
         {% if user.is_staff %}
-                <a href="{% url 'movies:update-movie' movie.slug %}"><i class="fas fa-cloud-upload"></i> Update</a>
+                <a href="{% url 'movies:update-movie' movie.slug %}" class="update-movie-link"><i class="fas fa-edit"></i><span> Update</span></a>
         {% endif %}
     {% endif %}
 {% endblock middle_navbar_links %}

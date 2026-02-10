@@ -13,12 +13,13 @@
 
 {% block scripts %}
 <script src="{% static 'js/video-player.js' %}" defer></script>
+<script src="{% static 'series/js/add_series_review.js' %}" defer></script>
 {% endblock scripts %}
 
 {% block middle_navbar_links %}
     {% if user.is_authenticated %}
         {% if user.is_staff %}
-                <a href="{% url 'series:update' series.slug %}"><i class="fas fa-cloud-upload"></i> Update</a>
+                <a href="{% url 'series:update' series.slug %}" class="update-series-link"><i class="fas fa-cloud-upload"></i><span> Update</span></a>
         {% endif %}
     {% endif %}
 {% endblock middle_navbar_links %}
@@ -80,6 +81,43 @@
     </div>
 
     <div class="group-2">
+        <!-- Series review section -->
+        <section class="series-reviews">
+            <h2>Reviews</h2>
+            <div class="reviews-list">
+                {% for review in reviews %}
+                    <div class="review-card">
+                        <div class="reviewer-info">
+                            <img src="{{ review.reviewer.profile_img.url }}" alt="{{ review.reviewer.username }}">
+                            <div>
+                                <p>{{ review.reviewer.username }}</p>
+                                <p class="review-date"><i class="fas fa-clock"></i> {{ review.review_date | timesince }} <span>ago</span></p>
+                            </div>
+                        </div>
+                        <div class="context">
+                            <p class="review-context-para">{{ review.text }}</p>
+                        </div>
+                    </div>
+                {% empty %}
+                    <p class="review-card" style="text-align: center;">No reviews are available!</p>
+                {% endfor %}
+            </div>
+
+            <div class="add-review-form">
+                <form novalidate action="" method="post" id="add_series_review_form">
+                    {% csrf_token %}
+                    <h4>Leave your review here.</h4>
+                    <input type="hidden" name="series" value="{{ series.id }}">
+                    <input type="hidden" name="submit_review">
+                    {{ review_form.as_div }}
+
+                    <div class="loader"></div>
+                    <div id="response_msg"></div>
+                    <button type="submit">Add review &nbsp; &nbsp;<i class="fas fa-arrow-right"></i></button>
+                </form>
+            </div>
+        </section>
+
         <section class="related-series">
             <h2>Related series</h2>
             {% if related_series.count == '0' %}

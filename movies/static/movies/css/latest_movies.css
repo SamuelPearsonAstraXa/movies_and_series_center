@@ -84,13 +84,13 @@ main{
         grid-template-columns: 1fr;
     }
 
-    .upload-movie-btn{
-        margin-right: 10rem;
+    .upload-movie-link i{
         position: relative;
-        top: 0.2rem;
+        right: 4rem;
+        top: 0.3rem;
     }
 
-    .upload-movie-btn span{
+    .upload-movie-link span{
         display: none;
     }
 

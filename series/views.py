@@ -4,8 +4,8 @@ from django.views.generic import TemplateView, ListView, CreateView, DetailView,
 from django.utils import timezone
 from datetime import timedelta
 # from django_filters.views import FilterView
-from .forms import UploadSeriesForm, UpdateSeriesForm
-from .models import Series
+from .forms import UploadSeriesForm, UpdateSeriesForm, AddSeriesReviewForm
+from .models import Series, SeriesReview
 
 class SeriesDetailsView(DetailView):
     model = Series
@@ -16,8 +16,26 @@ class SeriesDetailsView(DetailView):
 
         context['title'] = self.object.title
         context['related_series'] = Series.objects.filter(category=self.object.category)
+        context['review_form'] = AddSeriesReviewForm
+        context['reviews'] = SeriesReview.objects.filter(series=self.object)
 
         return context
+    
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        if 'submit_review' in request.POST:
+            form = AddSeriesReviewForm(request.POST)
+            if form.is_valid():
+                review = form.save(commit=False)
+                review.reviewer = self.request.user
+                review.series = self.object
+                review.save()
+
+                return JsonResponse({'success':True})
+            else:
+                return JsonResponse({'success':False, 'errors':form.errors})
+        else:
+            return JsonResponse({'success': False, 'error':'Unknown form submission.'})
 
 class UpdateSeriesView(UpdateView):
     model = Series

@@ -16,7 +16,7 @@
 {% block middle_navbar_links %}
     {% if user.is_authenticated %}
         {% if user.is_staff %}
-                <a href="{% url 'series:upload' %}"><i class="fas fa-cloud-upload"></i> Upload a series</a>
+                <a href="{% url 'series:upload' %}" class="upload-series-link"><i class="fas fa-cloud-upload"></i><span> Upload a series</span></a>
         {% endif %}
     {% endif %}
 {% endblock middle_navbar_links %}
@@ -44,6 +44,8 @@
                         <p>{{ series_obj.production_year }}</p>
                     </div>
                 </a>
+            {% empty %}
+                <p style="text-align: center;">There are no upcoming series at the moment!</p>
             {% endfor %}
         </section>
 

@@ -16,7 +16,7 @@
 {% block middle_navbar_links %}
     {% if user.is_authenticated %}
         {% if user.is_staff %}
-                <a href="{% url 'series:upload' %}"><i class="fas fa-cloud-upload"></i> Upload a series</a>
+                <a href="{% url 'series:upload' %}" class="upload-series-link"><i class="fas fa-cloud-upload"></i><span> Upload a series</span></a>
         {% endif %}
     {% endif %}
 {% endblock middle_navbar_links %}
@@ -51,7 +51,7 @@
                     </div>
                 </a>
             {% empty %}
-                <p>No series are available.</p>
+                <p style="text-align: center;">No series are available.</p>
             {% endfor %}
         </section>
 

@@ -75,3 +75,34 @@ main{
     display: flex;
     gap: 3rem;
 }
+
+@media screen and (max-width:60rem) {
+    html{
+        font-size: 50%;
+    }
+
+    .series-list{
+        grid-template-columns: 1fr;
+    }
+
+    .upload-series-link i{
+        position: relative;
+        right: 4rem;
+        top: 0.3rem;
+    }
+
+    .upload-series-link span{
+        display: none;
+    }
+
+    .wrapper .search-div{
+        width: 100%;
+        padding: 0;
+        padding-bottom: 2rem;
+    }
+
+    .wrapper .search-div button{
+        top: 1rem;
+        right: 1rem;
+    }
+}

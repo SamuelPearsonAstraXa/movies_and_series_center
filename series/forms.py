@@ -1,5 +1,10 @@
 from django import forms
-from .models import Series
+from .models import Series, SeriesReview
+
+class AddSeriesReviewForm(forms.ModelForm):
+    class Meta:
+        model = SeriesReview
+        fields = ['text',]
 
 class UpdateSeriesForm(forms.ModelForm):
     class Meta:

@@ -3,7 +3,7 @@ from accounts.models import CustomUser
 from django.utils.text import slugify
 from uuid import uuid4
 
-class Review(models.Model):
+class SeriesReview(models.Model):
     id  = models.UUIDField(default=uuid4, primary_key=True, editable=False)
     reviewer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='series_reviewer')
     series = models.ForeignKey('Series', on_delete=models.CASCADE, related_name='review_series')
