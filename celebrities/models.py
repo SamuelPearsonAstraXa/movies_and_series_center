@@ -30,6 +30,7 @@ class Celebrity(models.Model):
     occupation = models.CharField(max_length=200)
     biography = models.TextField(max_length=10000)
     religion = models.CharField(max_length=200, blank=True, default='')
+    picture = models.ImageField(upload_to='celebrities/pictures/', default='celebrities/pictures/default/default-pic.jpg')
     academic_history = models.TextField(max_length=5000)
     academic_qualifications = models.ManyToManyField(AcademicQualification, blank=True)
     home_town = models.CharField(max_length=100)

@@ -34,8 +34,8 @@
     <!-- Main navigation bar -->
     <nav id="main-navbar">
         <div class="left-links">
-            <button class="aside-navbar-toggler mini-btns"><i class="fas fa-bars"></i></button>
-            <a href="{% url 'core:home' %}" class="logo">MSC</a>
+            <button id="aside-navbar-toggler" class="aside-navbar-toggler"><i class="fas fa-bars"></i></button>
+            <a href="{% url 'core:home' %}" id="logo" class="logo">MSC</a>
         </div>
         <div class="middle-links">
             {% block middle_navbar_links %}
@@ -46,7 +46,7 @@
                 <button id="close-search-div-btn" class="mini-btns close-search-btn"><i class="fas fa-close"></i></button>
                 <form action="{% url 'core:search' %}" method="get">
                     <input type="search" name="search_query" id="search_query" placeholder="Search for something">
-                    <button type="submit"><i class="fas fa-search"></i></button>
+                    <button type="submit" class="dark-mode inline-element"><i class="fas fa-search"></i></button>
                 </form>
             </div>
         </div>
@@ -55,7 +55,7 @@
         </div> -->
         <div class="right-links">
             <button class="mini-btns" id="open-search-div-btn"><i class="fas fa-search"></i></button>
-            <button class="mini-btns"><i class="fas fa-moon"></i></button>
+            <button class="mini-btns" id="dark-theme-toggler"><i class="fas fa-moon"></i></button>
             {% if request.user.is_authenticated %}
                 <form action="{% url 'logout' %}" id="logout-form" method="post">
                     {% csrf_token %}
@@ -83,8 +83,8 @@
                     <a href="{% url 'movies:home' %}" class="movies sub-links">All</a>
                     <a href="{% url 'movies:latest' %}" class="movies sub-links">Latest</a>
                     <a href="{% url 'movies:upcoming' %}" class="movies sub-links">Upcoming</a>
-                    <a href="" class="movies sub-links">Box Office</a>
-                    <a href="" class="movies sub-links">Review</a>
+                    <a href="" class="movies sub-links" style="display: none;">Box Office</a>
+                    <a href="" class="movies sub-links" style="display: none;">Review</a>
                 </div>
 
                 <a class="series-link">Series <i class="fas series-link-icon fa-angle-down"></i></a>
@@ -92,15 +92,16 @@
                     <a href="{% url 'series:home' %}" class="series sub-links">All</a>
                     <a href="{% url 'series:latest' %}" class="series sub-links">Latest</a>
                     <a href="{% url 'series:upcoming' %}" class="series sub-links">Upcoming</a>
-                    <a href="" class="series sub-links">Renewal and cancellation</a>
-                    <a href="" class="series sub-links">Review</a>
+                    <a href="" class="series sub-links" style="display: none;">Renewal and cancellation</a>
+                    <a href="" class="series sub-links" style="display: none;">Review</a>
                 </div>
 
                 <a class="actors-link">Actors and Celebrities  <i class="fas actors-link-icon fa-angle-down"></i></a>
                 <div class="actors-sub-menu sub-menu">
+                    <a href="{% url 'actors:home' %}" class="actors sub-links">Actors</a>
+                    <a href="{% url 'celebrities:home' %}" class="actors sub-links">Celebrities</a>
                     <a href="" class="actors sub-links">Casting News</a>
                     <a href="" class="actors sub-links">Birthdays</a>
-                    <a href="{% url 'celebrities:home' %}" class="actors sub-links">Celebrities Updates</a>
                     <a href="" class="actors sub-links">Rumors and Leaks</a>
                 </div>
 

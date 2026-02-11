@@ -48,7 +48,13 @@ hr{
     height: 1px;
 }
 
+.dark-mode.block-element{
+    background-color: rgba(0,0,0,0.8) !important;
+}
 
+.dark-mode.inline-element{
+    color: white !important;
+}
 
 
 

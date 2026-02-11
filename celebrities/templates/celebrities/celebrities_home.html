@@ -27,10 +27,48 @@
 {% block content %}
 <main>
     <div class="wrapper">
-        <h1>celebrity Home</h1>
-        {% for news in celebrity_news %}
-            <p>{{ news.title }}</p>
-        {% endfor %}
+        <header>
+            <h1>Celebrities</h1>
+            <div class="search-div">
+                <form action="" method="get">
+                    <input type="search" name="search_query" id="search-query" placeholder="Search for celebrities...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </header>
+        <div class="celebrities-container">
+            {% if banner_celebrity %}
+                <a class="banner-celebrity">
+                    <h2>{{ banner_celebrity.name }}</h2>
+                    <img src="{{ banner_celebrity.picture.url }}" alt="{{ banner_celebrity.name }}">
+                    <!-- <p>{{ banner_celebrity.biography }}</p> -->
+                </a>
+            {% endif %}
+
+            <div class="celebrities-list">
+                {% for celebrity in celebrities %}
+                    {% if celebrity.id != banner_celebrity.id %}
+                        <a class="celebrity-card">
+                            <h2>{{ celebrity.name }}</h2>
+                            <img src="{{ celebrity.picture.url }}" alt="{{ celebrity.name }}" width="100">
+                            <!-- <p>{{ celebrity.biography }}</p> -->
+                        </a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="pagenation">
+            <div>
+                {% if page_obj.has_previous %}
+                    <a href="?{{ query_params }}&page={{ page_obj.previous_page_number }}"><i class="fas fa-arrow-left"></i> Previous</a>
+                {% endif %}
+                <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+                {% if page_obj.has_next %}
+                    <a href="?{{ query_params }}page={{ page_obj.next_page_number }}">Next <i class="fas fa-arrow-right"></i></a>
+                {% endif %}
+            </div>
+        </div>
     </div>
 </main>
 {% endblock content %}

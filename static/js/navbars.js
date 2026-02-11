@@ -1,18 +1,18 @@
 const open_search_div_btn = document.getElementById('open-search-div-btn');
 const close_search_div_btn = document.getElementById('close-search-div-btn');
 const search_div = document.getElementById('search-div');
-// const logout_toggler = document.getElementById('logout-toggler');
-// const logout_form = document.getElementById('logout-form');
-// // const cancel_logout_btn = document.querySelector('.cancle-logout-btn');
-// const logout_btn = document.getElementById('logout-btn');
+const dark_theme_toggler = document.getElementById('dark-theme-toggler');
+const aside_navbar_toggler = document.getElementById('aside-navbar-toggler');
+const main_navbar = document.getElementById('main-navbar');
+const logo = document.getElementById('logo');
 
-// logout_toggler.addEventListener('click', e=>{
-//     logout_form.style.display = 'flex';
-// })
-
-
-// $('#main-navbar .right-links .logout-toggler').click(e=>{
-//     $('#logout-form').fadeIn(500)
+// dark_theme_toggler.addEventListener('click', e=>{
+//     main_navbar.setAttribute('class', 'dark-mode block-element');
+//     search_div.setAttribute('class', 'dark-mode block-element');
+//     open_search_div_btn.setAttribute('class', 'mini-btns  dark-mode inline-element');
+//     dark_theme_toggler.setAttribute('class', 'mini-btns  dark-mode inline-element');
+//     aside_navbar_toggler.setAttribute('class', 'aside-navbar-toggler  dark-mode inline-element mini-btns');
+//     logo.setAttribute('class', 'logo dark-mode inline-element');
 // })
 
 $('#logout-btn').click(e=>{
