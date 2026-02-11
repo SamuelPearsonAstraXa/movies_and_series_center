@@ -3,6 +3,9 @@ from django.utils.text import slugify
 from accounts.models import CustomUser
 from core.models import AcademicQualification, Nationality
 from uuid import uuid4
+from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
 
 class CelebrityNews(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True, editable=False)
@@ -43,5 +46,17 @@ class Celebrity(models.Model):
     def save(self, *args, **kwargs):
         if self.slug == '':
             self.slug = slugify(self.name + str(self.id))
+        
+        if self.picture:
+            pic = Image.open(self.picture)
+
+            # Resizing
+            pic.thumbnail((500,500))
+
+            buffer = BytesIO()
+            pic.save(buffer, format='JPEG', quality=100)
+            buffer.seek(0)
+
+            self.picture = ContentFile(buffer.read(), name=self.picture.name)
 
         super().save(*args, **kwargs)

@@ -6,6 +6,17 @@ const aside_navbar_toggler = document.getElementById('aside-navbar-toggler');
 const main_navbar = document.getElementById('main-navbar');
 const logo = document.getElementById('logo');
 
+try {
+    const login_link = document.querySelector('.login-link');
+
+    login_link.addEventListener('click', e=>{
+        e.preventDefault();
+        window.location = `/accounts/user-login/?next=${window.location}`
+    })
+} catch (error) {
+    console.log('No login link')
+}
+
 // dark_theme_toggler.addEventListener('click', e=>{
 //     main_navbar.setAttribute('class', 'dark-mode block-element');
 //     search_div.setAttribute('class', 'dark-mode block-element');

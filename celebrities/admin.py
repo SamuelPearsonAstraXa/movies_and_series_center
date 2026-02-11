@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Celebrity, CelebrityNews
 
-# Register your models here.
+admin.site.register(CelebrityNews)
+admin.site.register(Celebrity)
