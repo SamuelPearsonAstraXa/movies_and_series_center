@@ -68,6 +68,6 @@ class HomeView(TemplateView):
         context['latest_series'] = Series.objects.filter(release_date__gte=cutoff_date, release_date__lte=today).order_by('-upload_date')
         context['upcoming_series'] = Series.objects.filter(release_date__lte=upcoming_date, release_date__gte=today).order_by('-upload_date')
         context['hero_news'] = News.objects.all().order_by('-created_at')[0]
-        context['news_updates'] = News.objects.filter(published_at__gte=cutoff_date, published_at__lte=today).order_by('-created_at')
+        context['news_updates'] = News.objects.filter(published_at__gte=cutoff_date, published_at__lte=today).order_by('-created_at')[:3]
 
         return context
