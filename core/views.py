@@ -7,6 +7,7 @@ from movies.models import Movie
 from series.models import Series
 from actors.models import Actor
 from celebrities.models import Celebrity
+from news.models import News
 
 class SearchView(ListView):
     model = Movie
@@ -66,5 +67,7 @@ class HomeView(TemplateView):
         context['upcoming_movies'] = Movie.objects.filter(release_date__lte=upcoming_date, release_date__gte=today).order_by('-upload_date')
         context['latest_series'] = Series.objects.filter(release_date__gte=cutoff_date, release_date__lte=today).order_by('-upload_date')
         context['upcoming_series'] = Series.objects.filter(release_date__lte=upcoming_date, release_date__gte=today).order_by('-upload_date')
+        context['hero_news'] = News.objects.all().order_by('-created_at')[0]
+        context['news_updates'] = News.objects.filter(published_at__gte=cutoff_date, published_at__lte=today).order_by('-created_at')
 
         return context

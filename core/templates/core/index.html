@@ -32,6 +32,7 @@ Home
         </section>
     {% endcomment %}
 
+    {% comment %}
     <section class="top-section-wrapper">
         <video src="{{ banner_video.video.url }}" class="banner-video" loop muted autoplay></video>
         <section class="hero-section">
@@ -155,5 +156,44 @@ Home
             </div>
         </section>
     {% endif %}
+
+    {% endcomment %}
+
+    <div class="wrapper">
+        <div class="side-section">
+            <div class="top-news">
+                {% for news in top_news %}
+
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="middle-section">
+            <div class="hero-section">
+                <section>
+                    <h1>Top story</h1>
+                    <div class="news-container">
+                        <h2><a href="">{{ hero_news.title | truncatechars:50 }}</a></h2>
+                        <img src="{{ hero_news.featured_img.url }}" alt="{{ hero_news.title }}">
+                        <p class="content">{{ hero_news.content | truncatechars:50 }}</p>
+                        <p class="author">By {{ hero_news.author }}</p>
+                    </div>
+                </section>
+                <section id="news-list">
+                    <h2><i class="fas fa-arrow-circle-down"></i> News updates <i class="fas fa-arrow-circle-down"></i></h2>
+                    <div class="news-list">
+                        {% for news in news_updates %}
+                            <a href="" class="news-card">
+                                <h3>{{ news.title | truncatechars:30 }}</h3>
+                                <img src="{{ news.featured_img.url }}" alt="{{ news.title }}">
+                                <p class="content">{{ news.content | truncatechars:20 }}</p>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </div>
 </main>
 {% endblock content %}

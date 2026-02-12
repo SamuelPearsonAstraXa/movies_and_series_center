@@ -10,6 +10,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('movies/', include('movies.urls')),
     path('series/', include('series.urls')),
+    path('news/', include('news.urls')),
     path('actors/', include('actors.urls')),
     path('celebrities/', include('celebrities.urls')),
     path('__reload__/', include('django_browser_reload.urls')),

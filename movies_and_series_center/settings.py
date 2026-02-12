@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'series',
     'actors',
     'celebrities',
+    'news',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
