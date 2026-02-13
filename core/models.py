@@ -54,6 +54,7 @@ class DidYouKnow(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True, editable=False)
     text = models.TextField()
     author = models.ForeignKey(CustomUser, on_delete=models.DO_NOTHING)
+    featured_img = models.ImageField(upload_to='facts/featured_images', default='facts/default_img/default.jpg', blank=True)
     slug = models.SlugField(default='', blank=True)
 
     def __str__(self):

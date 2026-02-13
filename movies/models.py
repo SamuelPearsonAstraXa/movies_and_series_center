@@ -2,6 +2,8 @@ from django.db import models
 from django.utils.text import slugify
 from uuid import uuid4
 from PIL import Image
+from io import BytesIO
+from django.core.files.base import ContentFile
 from accounts.models import CustomUser
 
 class MovieReview(models.Model):
@@ -46,4 +48,17 @@ class Movie(models.Model):
     def save(self, *args, **kwargs):
         if self.slug == '':
             self.slug = slugify(f'{self.title } - { str(self.production_year) } - { str(self.id)}')
+
+        if self.banner_img:
+            img = Image.open(self.banner_img)
+
+            # Resizing
+            img.thumbnail((500,500))
+
+            buffer = BytesIO()
+            img.save(buffer, format='JPEG', quality=100)
+            buffer.seek(0)
+
+            self.banner_img = ContentFile(buffer.read(), name=self.banner_img.name)
+
         super().save(*args, **kwargs)

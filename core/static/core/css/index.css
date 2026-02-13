@@ -15,12 +15,11 @@
 
 
 .middle-section{
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: white;
     border-radius: 1rem;
 }
 
 .middle-section .hero-section{
-    background-color: white;
     border-radius: 1rem;
     padding: 1rem;
     display: grid;
@@ -55,6 +54,23 @@
     font-size: 1.5rem;
     font-style: italic;
     margin-top: 1rem;
+}
+
+.middle-section .hero-section .advert{
+    padding: 2rem;
+}
+
+.middle-section .hero-section .advert .ad-wrapper{
+    background-color: rgba(0, 0, 0, 0.05);
+    border-radius: 1rem;
+    height: 20rem;
+}
+
+.middle-section .hero-section .advert .ad-wrapper p{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .middle-section #news-list h2{
@@ -95,6 +111,62 @@
     width: 100%;
     object-fit: cover;
     border-radius: 1rem;
+}
+
+
+
+/* The updates sections of the middle section of the page */
+.middle-section .stories-container{
+    margin-top: 2rem;
+    padding: 1rem;
+}
+
+.middle-section .stories-container fieldset{
+   padding: 2rem;
+   border: none;
+   border-top: 1px solid rgba(0, 0, 0, 0.1);
+   margin-bottom: 10rem;
+}
+
+.middle-section .stories-container fieldset legend{
+   padding: 0 0.5rem;
+   font-weight: 600;
+   font-size: 2rem;
+   text-shadow: 0 0 10px skyblue;
+}
+
+.middle-section .stories-container .movies-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+}
+
+.middle-section .stories-container .movies-list img{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+}
+
+.middle-section .stories-container .movies-list .movie-card{
+    padding: 1rem;
+    border-radius: 1rem;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.middle-section .stories-container .movies-list .movie-card h2{
+    padding-bottom: 1rem;
+    font-size: 2rem;
+}
+
+.middle-section .stories-container .movies-list .movie-card span{
+    /* position: absolute; */
+    top: 1rem;
+    right: 1rem;
+}
+
+.middle-section .stories-container .movies-list .movie-card span i{
+    font-size: 1.4rem;
 }
 
 

@@ -63,11 +63,13 @@ class HomeView(TemplateView):
         context['top_story'] = self.top_stories[0]
         context['did_you_know'] = self.did_you_knows[0]
         context['tagline'] = 'Find your joy through movies and series.'
+        context['movies'] = Movie.objects.all().order_by('-upload_date')
         context['latest_movies'] = Movie.objects.filter(release_date__gte=cutoff_date, release_date__lte=today).order_by('-upload_date')
         context['upcoming_movies'] = Movie.objects.filter(release_date__lte=upcoming_date, release_date__gte=today).order_by('-upload_date')
+        context['series'] = Series.objects.all().order_by('-upload_date')
         context['latest_series'] = Series.objects.filter(release_date__gte=cutoff_date, release_date__lte=today).order_by('-upload_date')
         context['upcoming_series'] = Series.objects.filter(release_date__lte=upcoming_date, release_date__gte=today).order_by('-upload_date')
         context['hero_news'] = News.objects.all().order_by('-created_at')[0]
-        context['news_updates'] = News.objects.filter(published_at__gte=cutoff_date, published_at__lte=today).order_by('-created_at')[:3]
+        context['news_updates'] = News.objects.filter(published_at__gte=cutoff_date, published_at__lte=today).order_by('-created_at')[:4]
 
         return context
